@@ -3,6 +3,11 @@ package ba.unsa.etf.rpr;
 import java.util.Date;
 import java.util.Objects;
 
+/**
+ * Information about class Order
+ * @author nmiralem1
+ */
+
 public class Order {
     private int id;
     private int userId;

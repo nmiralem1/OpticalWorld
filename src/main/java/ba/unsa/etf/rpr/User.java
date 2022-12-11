@@ -2,6 +2,11 @@ package ba.unsa.etf.rpr;
 
 import java.util.Objects;
 
+/**
+ * Information about class User
+ * @author nmiralem1
+ */
+
 public class User {
     private int id;
     private String name;

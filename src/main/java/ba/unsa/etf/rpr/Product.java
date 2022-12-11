@@ -1,6 +1,11 @@
 package ba.unsa.etf.rpr;
 import java.util.Objects;
 
+/**
+ * Information about class Product
+ * @author nmiralem1
+ */
+
 public class Product {
     private int id;
     private String category;
