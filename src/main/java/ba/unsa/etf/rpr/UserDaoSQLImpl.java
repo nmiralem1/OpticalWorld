@@ -29,6 +29,7 @@ public class UserDaoSQLImpl implements UserDao {
                 user.setCreditCard(rs.getInt("size"));
                 user.setEmail(rs.getString("email"));
                 user.setContact(rs.getInt("contact"));
+                user.setAddress(rs.getString("address"));
                 rs.close();
                 return user;
             }else{
@@ -69,6 +70,7 @@ public class UserDaoSQLImpl implements UserDao {
             stmt.setObject(4, item.getCreditCard());
             stmt.setObject(5,item.getEmail());
             stmt.setObject(6,item.getContact());
+            stmt.setObject(7,item.getAddress());
             stmt.executeUpdate();
             return item;
         }catch (SQLException e){
@@ -104,6 +106,7 @@ public class UserDaoSQLImpl implements UserDao {
                 user.setCreditCard(rs.getInt("creditCard"));
                 user.setEmail(rs.getString("email"));
                 user.setContact(rs.getInt("contact"));
+                user.setAddress(rs.getString("address"));
                 users.add(user);
             }
             rs.close();
