@@ -1,15 +1,14 @@
-package ba.unsa.etf.rpr;
-
+package ba.unsa.etf.rpr.dao;
+import ba.unsa.etf.rpr.domain.Product;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderDaoSQLImpl implements OrderDao {
-
+public class ProductDaoSQLImpl implements ProductDao {
     private Connection connection;
 
-    public OrderDaoSQLImpl(){
+    public ProductDaoSQLImpl(){
         try{
             this.connection = DriverManager.getConnection("jdbc:mysql://sql7.freemysqlhosting.net:3306/sql7582891", "sql7582891", "K5kVjGguVJ");
         }catch (Exception e){
@@ -18,20 +17,21 @@ public class OrderDaoSQLImpl implements OrderDao {
     }
 
     @Override
-    public Order getById(int id) {
+    public Product getById(int id) {
         String query = "SELECT * FROM order WHERE id = ?";
         try{
             PreparedStatement stmt = this.connection.prepareStatement(query);
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()){ // result set is iterator.
-                Order order = new Order();
-                order.setId(rs.getInt("id"));
-                order.setUserId(rs.getInt("userId"));
-                order.setNote(rs.getString("note"));
-                order.setTime(rs.getTime("time"));
+                Product product = new Product();
+                product.setId(rs.getInt("id"));
+                product.setCategory(rs.getString("category"));
+                product.setPrice(rs.getDouble("price"));
+                product.setSize(rs.getInt("size"));
+                product.setQuantity(rs.getInt("quantity"));
                 rs.close();
-                return order;
+                return product;
             }else{
                 return null; // if there is no elements in the result set return null
             }
@@ -42,11 +42,11 @@ public class OrderDaoSQLImpl implements OrderDao {
     }
 
     @Override
-    public Order add(Order item) {
+    public Product add(Product item) {
         String insert = "INSERT INTO order(name) VALUES(?)";
         try{
             PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
-            stmt.setString(1, item.getNote());
+            stmt.setString(1, item.getCategory());
             stmt.executeUpdate();
 
             ResultSet rs = stmt.getGeneratedKeys();
@@ -60,14 +60,15 @@ public class OrderDaoSQLImpl implements OrderDao {
     }
 
     @Override
-    public Order update(Order item) {
+    public Product update(Product item) {
         String insert = "UPDATE categories SET name = ? WHERE id = ?";
         try{
             PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
             stmt.setObject(1, item.getId());
-            stmt.setObject(2, item.getUserId());
-            stmt.setObject(3, item.getTime());
-            stmt.setObject(4, item.getNote());
+            stmt.setObject(2, item.getCategory());
+            stmt.setObject(3, item.getPrice());
+            stmt.setObject(4, item.getSize());
+            stmt.setObject(5,item.getQuantity());
             stmt.executeUpdate();
             return item;
         }catch (SQLException e){
@@ -89,24 +90,25 @@ public class OrderDaoSQLImpl implements OrderDao {
     }
 
     @Override
-    public List<Order> getAll() {
+    public List<Product> getAll() {
         String query = "SELECT * FROM categories";
-        List<Order> categories = new ArrayList<Order>();
+        List<Product> products = new ArrayList<Product>();
         try{
             PreparedStatement stmt = this.connection.prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()){ // result set is iterator.
-                Order order = new Order();
-                order.setId(rs.getInt("id"));
-                order.setUserId(rs.getInt("userID"));
-                order.setTime(rs.getTime("time"));
-                order.setNote(rs.getString("note"));
-                categories.add(order);
+                Product product = new Product();
+                product.setId(rs.getInt("id"));
+                product.setCategory(rs.getString("category"));
+                product.setPrice(rs.getDouble("price"));
+                product.setSize(rs.getInt("size"));
+                product.setQuantity(rs.getInt("quantity"));
+                products.add(product);
             }
             rs.close();
         }catch (SQLException e){
             e.printStackTrace(); // poor error handling
         }
-        return categories;
+        return products;
     }
 }

@@ -1,12 +1,17 @@
-package ba.unsa.etf.rpr;
+package ba.unsa.etf.rpr.dao;
+
+
+import ba.unsa.etf.rpr.domain.Order;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HelpDaoSQLImpl implements HelpDao{
+public class OrderDaoSQLImpl implements OrderDao {
+
     private Connection connection;
 
-    public HelpDaoSQLImpl(){
+    public OrderDaoSQLImpl(){
         try{
             this.connection = DriverManager.getConnection("jdbc:mysql://sql7.freemysqlhosting.net:3306/sql7582891", "sql7582891", "K5kVjGguVJ");
         }catch (Exception e){
@@ -15,18 +20,20 @@ public class HelpDaoSQLImpl implements HelpDao{
     }
 
     @Override
-    public Help getById(int id) {
-        String query = "SELECT * FROM categories WHERE id = ?";
+    public Order getById(int id) {
+        String query = "SELECT * FROM order WHERE id = ?";
         try{
             PreparedStatement stmt = this.connection.prepareStatement(query);
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()){ // result set is iterator.
-                Help help = new Help();
-                help.setOrderId(rs.getInt("orderId"));
-                help.setProductId(rs.getInt("ProductId"));
+                Order order = new Order();
+                order.setId(rs.getInt("id"));
+                order.setUserId(rs.getInt("userId"));
+                order.setNote(rs.getString("note"));
+                order.setTime(rs.getTime("time"));
                 rs.close();
-                return help;
+                return order;
             }else{
                 return null; // if there is no elements in the result set return null
             }
@@ -37,17 +44,16 @@ public class HelpDaoSQLImpl implements HelpDao{
     }
 
     @Override
-    public Help add(Help item) {
-        String insert = "INSERT INTO categories(name) VALUES(?)";
+    public Order add(Order item) {
+        String insert = "INSERT INTO order(name) VALUES(?)";
         try{
             PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
-
+            stmt.setString(1, item.getNote());
             stmt.executeUpdate();
 
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next(); // we know that there is one key
-            item.setProductId(rs.getInt(1)); //set id to return it back
-            item.setOrderId(rs.getInt(2));
+            item.setId(rs.getInt(1)); //set id to return it back
             return item;
         }catch (SQLException e){
             e.printStackTrace();
@@ -56,12 +62,14 @@ public class HelpDaoSQLImpl implements HelpDao{
     }
 
     @Override
-    public Help update(Help item) {
+    public Order update(Order item) {
         String insert = "UPDATE categories SET name = ? WHERE id = ?";
         try{
             PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
-            stmt.setObject(1, item.getOrderId());
-            stmt.setObject(2, item.getProductId());
+            stmt.setObject(1, item.getId());
+            stmt.setObject(2, item.getUserId());
+            stmt.setObject(3, item.getTime());
+            stmt.setObject(4, item.getNote());
             stmt.executeUpdate();
             return item;
         }catch (SQLException e){
@@ -83,23 +91,24 @@ public class HelpDaoSQLImpl implements HelpDao{
     }
 
     @Override
-    public List<Help> getAll() {
+    public List<Order> getAll() {
         String query = "SELECT * FROM categories";
-        List<Help> Help = new ArrayList<Help>();
+        List<Order> categories = new ArrayList<Order>();
         try{
             PreparedStatement stmt = this.connection.prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()){ // result set is iterator.
-                Help help = new Help();
-                help.setProductId(rs.getInt("productId"));
-                help.setOrderId(rs.getInt("orderId"));
-                Help.add(help);
+                Order order = new Order();
+                order.setId(rs.getInt("id"));
+                order.setUserId(rs.getInt("userID"));
+                order.setTime(rs.getTime("time"));
+                order.setNote(rs.getString("note"));
+                categories.add(order);
             }
             rs.close();
         }catch (SQLException e){
             e.printStackTrace(); // poor error handling
         }
-        return Help;
+        return categories;
     }
-
 }

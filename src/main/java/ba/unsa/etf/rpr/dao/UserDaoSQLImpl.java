@@ -1,12 +1,14 @@
-package ba.unsa.etf.rpr;
+package ba.unsa.etf.rpr.dao;
+import ba.unsa.etf.rpr.domain.User;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductDaoSQLImpl implements ProductDao{
+public class UserDaoSQLImpl implements UserDao {
     private Connection connection;
 
-    public ProductDaoSQLImpl(){
+    public UserDaoSQLImpl(){
         try{
             this.connection = DriverManager.getConnection("jdbc:mysql://sql7.freemysqlhosting.net:3306/sql7582891", "sql7582891", "K5kVjGguVJ");
         }catch (Exception e){
@@ -15,21 +17,23 @@ public class ProductDaoSQLImpl implements ProductDao{
     }
 
     @Override
-    public Product getById(int id) {
+    public User getById(int id) {
         String query = "SELECT * FROM order WHERE id = ?";
         try{
             PreparedStatement stmt = this.connection.prepareStatement(query);
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()){ // result set is iterator.
-                Product product = new Product();
-                product.setId(rs.getInt("id"));
-                product.setCategory(rs.getString("category"));
-                product.setPrice(rs.getDouble("price"));
-                product.setSize(rs.getInt("size"));
-                product.setQuantity(rs.getInt("quantity"));
+                User user = new User();
+                user.setId(rs.getInt("id"));
+                user.setName(rs.getString("name"));
+                user.setSurname(rs.getString("surname"));
+                user.setCreditCard(rs.getInt("size"));
+                user.setEmail(rs.getString("email"));
+                user.setContact(rs.getInt("contact"));
+                user.setAddress(rs.getString("address"));
                 rs.close();
-                return product;
+                return user;
             }else{
                 return null; // if there is no elements in the result set return null
             }
@@ -40,11 +44,11 @@ public class ProductDaoSQLImpl implements ProductDao{
     }
 
     @Override
-    public Product add(Product item) {
+    public User add(User item) {
         String insert = "INSERT INTO order(name) VALUES(?)";
         try{
             PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
-            stmt.setString(1, item.getCategory());
+            stmt.setString(1, item.getName());
             stmt.executeUpdate();
 
             ResultSet rs = stmt.getGeneratedKeys();
@@ -58,15 +62,17 @@ public class ProductDaoSQLImpl implements ProductDao{
     }
 
     @Override
-    public Product update(Product item) {
+    public User update(User item) {
         String insert = "UPDATE categories SET name = ? WHERE id = ?";
         try{
             PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
             stmt.setObject(1, item.getId());
-            stmt.setObject(2, item.getCategory());
-            stmt.setObject(3, item.getPrice());
-            stmt.setObject(4, item.getSize());
-            stmt.setObject(5,item.getQuantity());
+            stmt.setObject(2, item.getName());
+            stmt.setObject(3, item.getSurname());
+            stmt.setObject(4, item.getCreditCard());
+            stmt.setObject(5,item.getEmail());
+            stmt.setObject(6,item.getContact());
+            stmt.setObject(7,item.getAddress());
             stmt.executeUpdate();
             return item;
         }catch (SQLException e){
@@ -88,25 +94,27 @@ public class ProductDaoSQLImpl implements ProductDao{
     }
 
     @Override
-    public List<Product> getAll() {
+    public List<User> getAll() {
         String query = "SELECT * FROM categories";
-        List<Product> products = new ArrayList<Product>();
+        List<User> users = new ArrayList<User>();
         try{
             PreparedStatement stmt = this.connection.prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()){ // result set is iterator.
-                Product product = new Product();
-                product.setId(rs.getInt("id"));
-                product.setCategory(rs.getString("category"));
-                product.setPrice(rs.getDouble("price"));
-                product.setSize(rs.getInt("size"));
-                product.setQuantity(rs.getInt("quantity"));
-                products.add(product);
+                User user = new User();
+                user.setId(rs.getInt("id"));
+                user.setName(rs.getString("name"));
+                user.setSurname(rs.getString("surname"));
+                user.setCreditCard(rs.getInt("creditCard"));
+                user.setEmail(rs.getString("email"));
+                user.setContact(rs.getInt("contact"));
+                user.setAddress(rs.getString("address"));
+                users.add(user);
             }
             rs.close();
         }catch (SQLException e){
             e.printStackTrace(); // poor error handling
         }
-        return products;
+        return users;
     }
 }
