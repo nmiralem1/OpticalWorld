@@ -18,7 +18,7 @@ public class ProductDaoSQLImpl implements ProductDao {
 
     @Override
     public Product getById(int id) {
-        String query = "SELECT * FROM order WHERE id = ?";
+        String query = "SELECT * FROM product WHERE id = ?";
         try{
             PreparedStatement stmt = this.connection.prepareStatement(query);
             stmt.setInt(1, id);
@@ -43,7 +43,7 @@ public class ProductDaoSQLImpl implements ProductDao {
 
     @Override
     public Product add(Product item) {
-        String insert = "INSERT INTO order(name) VALUES(?)";
+        String insert = "INSERT INTO product(name) VALUES(?)";
         try{
             PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, item.getCategory());
@@ -61,7 +61,7 @@ public class ProductDaoSQLImpl implements ProductDao {
 
     @Override
     public Product update(Product item) {
-        String insert = "UPDATE categories SET name = ? WHERE id = ?";
+        String insert = "UPDATE product SET name = ? WHERE id = ?";
         try{
             PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
             stmt.setObject(1, item.getId());
@@ -79,7 +79,7 @@ public class ProductDaoSQLImpl implements ProductDao {
 
     @Override
     public void delete(int id) {
-        String insert = "DELETE FROM categories WHERE id = ?";
+        String insert = "DELETE FROM product WHERE id = ?";
         try{
             PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
             stmt.setObject(1, id);
@@ -91,7 +91,7 @@ public class ProductDaoSQLImpl implements ProductDao {
 
     @Override
     public List<Product> getAll() {
-        String query = "SELECT * FROM categories";
+        String query = "SELECT * FROM product";
         List<Product> products = new ArrayList<Product>();
         try{
             PreparedStatement stmt = this.connection.prepareStatement(query);

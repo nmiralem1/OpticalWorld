@@ -18,7 +18,7 @@ public class HelpDaoSQLImpl implements HelpDao {
 
     @Override
     public Help getById(int id) {
-        String query = "SELECT * FROM categories WHERE id = ?";
+        String query = "SELECT * FROM help WHERE id = ?";
         try{
             PreparedStatement stmt = this.connection.prepareStatement(query);
             stmt.setInt(1, id);
@@ -40,7 +40,7 @@ public class HelpDaoSQLImpl implements HelpDao {
 
     @Override
     public Help add(Help item) {
-        String insert = "INSERT INTO categories(name) VALUES(?)";
+        String insert = "INSERT INTO help(name) VALUES(?)";
         try{
             PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 
@@ -59,7 +59,7 @@ public class HelpDaoSQLImpl implements HelpDao {
 
     @Override
     public Help update(Help item) {
-        String insert = "UPDATE categories SET name = ? WHERE id = ?";
+        String insert = "UPDATE help SET name = ? WHERE id = ?";
         try{
             PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
             stmt.setObject(1, item.getOrderId());
@@ -74,7 +74,7 @@ public class HelpDaoSQLImpl implements HelpDao {
 
     @Override
     public void delete(int id) {
-        String insert = "DELETE FROM categories WHERE id = ?";
+        String insert = "DELETE FROM help WHERE id = ?";
         try{
             PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
             stmt.setObject(1, id);
@@ -86,7 +86,7 @@ public class HelpDaoSQLImpl implements HelpDao {
 
     @Override
     public List<Help> getAll() {
-        String query = "SELECT * FROM categories";
+        String query = "SELECT * FROM help";
         List<Help> Help = new ArrayList<Help>();
         try{
             PreparedStatement stmt = this.connection.prepareStatement(query);

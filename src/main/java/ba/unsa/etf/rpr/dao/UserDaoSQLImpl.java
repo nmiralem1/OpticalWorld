@@ -18,7 +18,7 @@ public class UserDaoSQLImpl implements UserDao {
 
     @Override
     public User getById(int id) {
-        String query = "SELECT * FROM order WHERE id = ?";
+        String query = "SELECT * FROM user WHERE id = ?";
         try{
             PreparedStatement stmt = this.connection.prepareStatement(query);
             stmt.setInt(1, id);
@@ -45,7 +45,7 @@ public class UserDaoSQLImpl implements UserDao {
 
     @Override
     public User add(User item) {
-        String insert = "INSERT INTO order(name) VALUES(?)";
+        String insert = "INSERT INTO user(name) VALUES(?)";
         try{
             PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, item.getName());
@@ -63,7 +63,7 @@ public class UserDaoSQLImpl implements UserDao {
 
     @Override
     public User update(User item) {
-        String insert = "UPDATE categories SET name = ? WHERE id = ?";
+        String insert = "UPDATE user SET name = ? WHERE id = ?";
         try{
             PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
             stmt.setObject(1, item.getId());
@@ -83,7 +83,7 @@ public class UserDaoSQLImpl implements UserDao {
 
     @Override
     public void delete(int id) {
-        String insert = "DELETE FROM categories WHERE id = ?";
+        String insert = "DELETE FROM user WHERE id = ?";
         try{
             PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
             stmt.setObject(1, id);
@@ -95,7 +95,7 @@ public class UserDaoSQLImpl implements UserDao {
 
     @Override
     public List<User> getAll() {
-        String query = "SELECT * FROM categories";
+        String query = "SELECT * FROM user";
         List<User> users = new ArrayList<User>();
         try{
             PreparedStatement stmt = this.connection.prepareStatement(query);
