@@ -1,23 +1,49 @@
 package ba.unsa.etf.rpr;
 
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class Controller {
 
     public TextField fieldUsername;
+    @FXML
+    public void initialize(){
+        fieldUsername.getStyleClass().add("poljeNijeIspravno");
+        fieldUsername.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String o, String n){
+                if(fieldUsername.getText().trim().isEmpty()) {
+                    fieldUsername.getStyleClass().removeAll("poljeJeIspravno");
+                    fieldUsername.getStyleClass().add("poljeNijeIspravno");}
+                else{
+                    fieldUsername.getStyleClass().removeAll("poljeNijeIspravno");
+                    fieldUsername.getStyleClass().add("poljeJeIspravno");}}
 
-    public void buttonClick(ActionEvent actionEvent) {
+    });}
+
+    public void buttonClick(ActionEvent actionEvent) throws IOException {
         if(fieldUsername.getText().isEmpty()){
-            Alert alert=new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Greška!");
-            alert.setHeaderText("Niste unijeli korisničko ime");
-            alert.show();
+            fieldUsername.getStyleClass().add("poljeNijeIspravno");
+
             return;
         }
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Pozdrav");
+        Stage stage=new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/noviprozor.fxml"));
+        stage.setTitle("Novi prozor");
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.show();
     }
 }
