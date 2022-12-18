@@ -36,12 +36,13 @@ public class Controller {
 
     public void buttonClick(ActionEvent actionEvent) throws IOException {
         if(fieldUsername.getText().isEmpty()){
-            fieldUsername.getStyleClass().add("poljeNijeIspravno");
-
-            return;
+           return;
         }
         Stage stage=new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/noviprozor.fxml"));
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/noviprozor.fxml"));
+        Parent root= loader.load();
+        noviprozor nprozor=loader.getController();
+        nprozor.labela.setText(nprozor.labela.getText()+ fieldUsername.getText());
         stage.setTitle("Novi prozor");
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.show();
