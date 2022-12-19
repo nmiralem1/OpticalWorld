@@ -1,4 +1,4 @@
-data.properties
+src/main/resources/data.properties
 .idea
 target
 
