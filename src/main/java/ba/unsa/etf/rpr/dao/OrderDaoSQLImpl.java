@@ -3,9 +3,11 @@ package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.Order;
 
+import java.io.FileReader;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class OrderDaoSQLImpl implements OrderDao {
 
@@ -13,11 +15,19 @@ public class OrderDaoSQLImpl implements OrderDao {
 
     public OrderDaoSQLImpl(){
         try{
-            this.connection = DriverManager.getConnection("jdbc:mysql://sql7.freemysqlhosting.net:3306/sql7582891", "sql7582891", "K5kVjGguVJ");
+            FileReader reader = new FileReader("src/main/resources/data.properties");
+            Properties p = new Properties();
+            p.load(reader);
+            String s1 = p.getProperty("url");
+            String s2 = p.getProperty("user");
+            String s3 = p.getProperty("password");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            this.connection = DriverManager.getConnection(s1,s2,s3);
         }catch (Exception e){
             e.printStackTrace();
         }
     }
+
 
     @Override
     public Order getById(int id) {
