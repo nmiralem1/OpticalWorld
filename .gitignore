@@ -1,4 +1,3 @@
 .idea
 target
-database.properties
-
+src/main/resources/database.properties
