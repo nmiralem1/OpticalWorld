@@ -12,7 +12,7 @@ public class HelpDaoSQLImpl implements HelpDao {
 
     public HelpDaoSQLImpl(){
         try{
-            FileReader reader = new FileReader("src/main/resources/data.properties");
+            FileReader reader = new FileReader("src/main/resources/database.properties");
             Properties p = new Properties();
             p.load(reader);
             String s1 = p.getProperty("url");
