@@ -3,97 +3,80 @@ package ba.unsa.etf.rpr.domain;
 import java.util.Objects;
 
 /**
- * Information about class User
- * @author nmiralem1
+ * User class that represents a user with its name, surname, email and login data
  */
+public class User implements Idable {
 
-public class User {
     private int id;
-    private String name;
-    private String surname;
-    private int creditCard;
+    private String firstName;
+    private String lastName;
     private String email;
-    private int contact;
+    private String username;
+    private String password;
+    private int role;
 
-    public String getAddress() {
-        return address;
+
+    public User(String firstName, String lastName, String email, int role, String username, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.role = role;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public User() {
     }
 
-    private String address;
-
+    @Override
+    public String toString() {
+        return firstName + " " + lastName;
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, email, role, username, password);
+    }
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
-
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
-
-    public String getSurname() {
-        return surname;
+    public String getLastName() {
+        return lastName;
     }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public int getCreditCard() {
-        return creditCard;
-    }
-
-    public void setCreditCard(int creditCard) {
-        this.creditCard = creditCard;
-    }
-
+    public void setLastName(String lastName) { this.lastName = lastName; }
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public int getContact() {
-        return contact;
+    public String getUsername() {
+        return username;
     }
-
-    public void setContact(int contact) {
-        this.contact = contact;
+    public void setUsername(String username) {
+        this.username = username;
     }
-
-    @Override
-    public String toString(){
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname=" + surname +
-                ", credit card=" + creditCard +
-                ", email=" + email +
-                ", contact=" + contact +
-                '}';
+    public String getPassword() {
+        return password;
     }
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return id == user.id;
+    public void setPassword(String password) {
+        this.password = password;
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, surname, creditCard, email, contact);
+    public int isAdministrator() {
+        return role;
+    }
+    public void setRole(int role) {
+        this.role = role;
+    }
+    public int getRole() {
+        return role;
     }
 }
