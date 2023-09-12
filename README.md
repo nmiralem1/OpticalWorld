@@ -1,6 +1,6 @@
 # Optical World
 ![logo-color-removebg-preview](https://github.com/nmiralem1/projekat/assets/115872381/d68316b1-d635-4a93-a0b2-c46653a5914f)
-<logo-color-removebg-preview align="right" width="100" height="100">
+<logo-color-removebg-preview align="right" width="100" height="100" src="https://github.com/nmiralem1/projekat/assets/115872381/d68316b1-d635-4a93-a0b2-c46653a5914f">
 
 Welcome to Optical World! We're your one-stop destination for all your eyewear needs. 
 Whether you need a new pair of stylish glasses, prescription sunglasses, or contact lenses, 
