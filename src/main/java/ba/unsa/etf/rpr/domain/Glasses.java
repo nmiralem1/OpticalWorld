@@ -6,7 +6,7 @@ import java.util.Objects;
  * @author nmiralem1
  */
 
-public class Glasses {
+public class Glasses implements Idable {
     private int id;
     private String category;
     private double price;
