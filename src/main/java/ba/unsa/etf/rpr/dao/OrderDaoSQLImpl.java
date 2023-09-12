@@ -46,9 +46,8 @@ public class OrderDaoSQLImpl extends AbstractDao<Order> implements OrderDao {
         try {
             Order reservation = new Order();
             reservation.setId(rs.getInt("id"));
-            reservation.setUsername(DaoFactory.userDao().getById(rs.getInt("userID")));
             reservation.setTotal(rs.getInt("total"));
-            reservation.setGlassesId(DaoFactory.glassesDao().getById(rs.getInt("glassesID")));
+            reservation.setGlasses(DaoFactory.glassesDao().getById(rs.getInt("glassesID")));
             return reservation;
         } catch (Exception e) {
             throw new GlassesException(e.getMessage(), e);
@@ -63,8 +62,8 @@ public class OrderDaoSQLImpl extends AbstractDao<Order> implements OrderDao {
     public Map<String, Object> object2row(Order object) {
         Map<String, Object> item = new TreeMap<>();
         item.put("id", object.getId());
-        item.put("userID", object.getUsername().getId());
-        item.put("glassesID",object.getGlassesId().getId());
+        item.put("userID", object.getUserId().getId());
+        item.put("glassesID",object.getGlasses().getId());
         item.put("total",object.getTotal());
         return item;
     }
