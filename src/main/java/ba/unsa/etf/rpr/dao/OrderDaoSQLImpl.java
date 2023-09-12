@@ -1,124 +1,112 @@
 package ba.unsa.etf.rpr.dao;
 
-
 import ba.unsa.etf.rpr.domain.Order;
-
-import java.io.FileReader;
-import java.sql.*;
+import ba.unsa.etf.rpr.domain.Glasses;
+import ba.unsa.etf.rpr.domain.User;
+import ba.unsa.etf.rpr.exceptions.GlassesException;
+import ba.unsa.etf.rpr.business.GlassesManager;
+import ba.unsa.etf.rpr.business.UserManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
+import java.util.Map;
+import java.util.TreeMap;
 
-public class OrderDaoSQLImpl implements OrderDao {
+/**
+ * MySQL Implementation of DAO
+ */
+public class OrderDaoSQLImpl extends AbstractDao<Order> implements OrderDao {
 
-    private Connection connection;
+    private static OrderDaoSQLImpl instance = null;
+    private final GlassesManager r = new GlassesManager();
+    private final UserManager u = new UserManager();
+    private OrderDaoSQLImpl() {
+        super("reservations");
+    }
 
-    public OrderDaoSQLImpl(){
-        try{
-            FileReader reader = new FileReader("src/main/resources/database.properties");
-            Properties p = new Properties();
-            p.load(reader);
-            String s1 = p.getProperty("url");
-            String s2 = p.getProperty("user");
-            String s3 = p.getProperty("password");
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            this.connection = DriverManager.getConnection(s1,s2,s3);
-        }catch (Exception e){
-            e.printStackTrace();
+    public static OrderDaoSQLImpl getInstance(){
+        if(instance==null)
+            instance = new OrderDaoSQLImpl();
+        return instance;
+    }
+
+    /**
+     * Remove instance.
+     */
+    public static void removeInstance(){
+        if(instance!=null)
+            instance=null;
+    }
+
+    @Override
+    public Order row2object(ResultSet rs) throws GlassesException{
+        try {
+            Order reservation = new Order();
+            reservation.setId(rs.getInt("id"));
+            reservation.setUsername(DaoFactory.userDao().getById(rs.getInt("userID")));
+            reservation.setTotal(rs.getInt("total"));
+            reservation.setGlassesId(DaoFactory.glassesDao().getById(rs.getInt("glassesID")));
+            return reservation;
+        } catch (Exception e) {
+            throw new GlassesException(e.getMessage(), e);
         }
     }
 
+    /**
+     * @param object - object to be mapped
+     * @return map representation of object
+     */
+    @Override
+    public Map<String, Object> object2row(Order object) {
+        Map<String, Object> item = new TreeMap<>();
+        item.put("id", object.getId());
+        item.put("userID", object.getUsername().getId());
+        item.put("glassesID",object.getGlassesId().getId());
+        item.put("total",object.getTotal());
+        return item;
+    }
 
     @Override
-    public Order getById(int id) {
-        String query = "SELECT * FROM order WHERE id = ?";
+    public int totalIncome() throws SQLException {
+        int totalIncome = 0;
+        String query = "SELECT SUM(total) AS total_price FROM reservations";
+        try (PreparedStatement st = AbstractDao.getConnection().prepareStatement(query)) {
+            ResultSet result = st.executeQuery();
+            if (result.next()) totalIncome = result.getInt("total_price");
+        }
+        return totalIncome;
+    }
+
+    public List<Order> getAllForUser(User user){
+        List<Order> userReservations = new ArrayList<>();
+        // Connect to the database
         try{
-            PreparedStatement stmt = this.connection.prepareStatement(query);
-            stmt.setInt(1, id);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()){ // result set is iterator.
-                Order order = new Order();
-                order.setId(rs.getInt("id"));
-                order.setUserId(rs.getInt("userId"));
-                order.setNote(rs.getString("note"));
-                order.setTime(rs.getTime("time"));
-                rs.close();
-                return order;
-            }else{
-                return null; // if there is no elements in the result set return null
+            // Prepare a statement to execute the query
+            String query = "SELECT * FROM reservations WHERE userID = ?";
+            PreparedStatement statement = getConnection().prepareStatement(query);
+            statement.setObject(1, user.getId());
+            // Execute the query and get the result set
+            ResultSet resultSet = statement.executeQuery();
+            // Iterate over the result set and add each hotel to the list
+            while (resultSet.next()) {
+
+                int user_id = resultSet.getInt("userID");
+                int room_id = resultSet.getInt("roomID");
+                Glasses glasses = r.getById(room_id);
+                User user2 = u.getById(user_id);
+                int total = resultSet.getInt("total");
+                Order reservation = new Order(total, user2, glasses);
+                userReservations.add(reservation);
             }
-        }catch (SQLException e){
-            e.printStackTrace(); // poor error handling
-        }
-        return null;
-    }
-
-    @Override
-    public Order add(Order item) {
-        String insert = "INSERT INTO order(name) VALUES(?)";
-        try{
-            PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
-            stmt.setString(1, item.getNote());
-            stmt.executeUpdate();
-
-            ResultSet rs = stmt.getGeneratedKeys();
-            rs.next(); // we know that there is one key
-            item.setId(rs.getInt(1)); //set id to return it back
-            return item;
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
+        } catch (GlassesException e) {
+            throw new RuntimeException(e);
         }
-        return null;
-    }
-
-    @Override
-    public Order update(Order item) {
-        String insert = "UPDATE categories SET name = ? WHERE id = ?";
-        try{
-            PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
-            stmt.setObject(1, item.getId());
-            stmt.setObject(2, item.getUserId());
-            stmt.setObject(3, item.getTime());
-            stmt.setObject(4, item.getNote());
-            stmt.executeUpdate();
-            return item;
-        }catch (SQLException e){
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    @Override
-    public void delete(int id) {
-        String insert = "DELETE FROM categories WHERE id = ?";
-        try{
-            PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
-            stmt.setObject(1, id);
-            stmt.executeUpdate();
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public List<Order> getAll() {
-        String query = "SELECT * FROM categories";
-        List<Order> categories = new ArrayList<Order>();
-        try{
-            PreparedStatement stmt = this.connection.prepareStatement(query);
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()){ // result set is iterator.
-                Order order = new Order();
-                order.setId(rs.getInt("id"));
-                order.setUserId(rs.getInt("userID"));
-                order.setTime(rs.getTime("time"));
-                order.setNote(rs.getString("note"));
-                categories.add(order);
-            }
-            rs.close();
-        }catch (SQLException e){
-            e.printStackTrace(); // poor error handling
-        }
-        return categories;
+        // Return the list of hotels
+        return userReservations;
     }
 }

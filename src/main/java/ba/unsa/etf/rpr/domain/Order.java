@@ -14,6 +14,9 @@ public class Order {
     private Date time;
     private String note;
 
+    public Order(int total, User user2, Glasses glasses) {
+    }
+
     public int getId() {
         return id;
     }
