@@ -50,15 +50,11 @@ For those who prefer contact lenses:
 
 Ordering from Optical World is easy:
 
-1. **Browse our Catalog:** Explore our eyewear collection on our [website](https://opticalworld.com) or visit our physical store.
+1. **Select Your Eyewear:** Choose your favorite frames or lenses.
 
-2. **Schedule an Eye Exam:** If you need a prescription, schedule an eye exam with our optometrist.
+2. **Place Your Order:** Complete your order online or in-store, providing your prescription details if necessary.
 
-3. **Select Your Eyewear:** Choose your favorite frames or lenses.
-
-4. **Place Your Order:** Complete your order online or in-store, providing your prescription details if necessary.
-
-5. **Enjoy Fast Shipping:** We'll ship your order quickly, and you'll receive it at your doorstep.
+3. **Enjoy Fast Shipping:** We'll ship your order quickly, and you'll receive it at your doorstep.
 
 ## Contact Us
 
