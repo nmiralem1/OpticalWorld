@@ -6,12 +6,11 @@ import java.util.Objects;
  * @author nmiralem1
  */
 
-public class Product {
+public class Glasses {
     private int id;
     private String category;
     private double price;
-    private int size;
-    private int quantity;
+
 
     public int getId() {
         return id;
@@ -37,29 +36,15 @@ public class Product {
         this.price = price;
     }
 
-    public int getSize() {
-        return size;
-    }
 
-    public void setSize(int size) {
-        this.size = size;
-    }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
     @Override
     public String toString() {
         return "Product{" +
                 "id=" + id +
                 ", category='" + category + '\'' +
                 ", price=" + price +
-                ", size=" + size +
-                ", quantity=" + quantity +
+
                 '}';
     }
 
@@ -67,12 +52,12 @@ public class Product {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
+        Glasses product = (Glasses) o;
         return id == product.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, category, price, size, quantity);
+        return Objects.hash(id, category, price);
     }
 }

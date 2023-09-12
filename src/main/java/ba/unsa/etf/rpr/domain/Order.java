@@ -8,53 +8,37 @@ import java.util.Objects;
  * @author nmiralem1
  */
 
-public class Order {
-    private int id;
-    private int userId;
-    private Date time;
-    private String note;
+public class Order implements Idable {
+    private Glasses glasses;
+    private User userId;
+    private int total;
 
     public Order(int total, User user2, Glasses glasses) {
     }
 
-    public int getId() {
-        return id;
+    public Order() {
+
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public Glasses getGlasses(){ return glasses;}
+    public void setGlasses(Glasses glasses){ this.glasses=glasses;}
 
-    public int getUserId() {
+    public User getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(User userId) {
         this.userId = userId;
     }
+    public void setTotal(int total){ this.total=total;}
+    public int getTotal(){ return total;}
 
-    public Date getTime() {
-        return time;
-    }
-
-    public void setTime(Date time) {
-        this.time = time;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
     @Override
     public String toString() {
         return "Order{" +
-                "id=" + id +
+                "glasses=" + glasses +
                 ", userId='" + userId + '\'' +
-                ", time=" + time +
-                ", note=" + note +
+                ", total= " + total+
                 '}';
     }
 
@@ -63,12 +47,22 @@ public class Order {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return id == order.id;
+        return glasses == order.glasses;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userId,time, note);
+        return Objects.hash(glasses, userId,total);
     }
 
+
+    @Override
+    public void setId(int id) {
+
+    }
+
+    @Override
+    public int getId() {
+        return 0;
+    }
 }
