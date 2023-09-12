@@ -1,6 +1,7 @@
 # Optical World
 
 Welcome to Optical World! We're your one-stop destination for all your eyewear needs. Whether you need a new pair of stylish glasses, prescription sunglasses, or contact lenses, we've got you covered. Our experienced team is dedicated to helping you find the perfect eyewear solution.
+![logo-color](https://github.com/nmiralem1/projekat/assets/115872381/08cfd21b-9967-4fd5-9445-e5fcfaae9ffb)
 
 ## Table of Contents
 
@@ -76,4 +77,4 @@ Follow us on social media for updates and special promotions:
 
 Thank you for choosing Optical World for all your eyewear needs. We look forward to serving you!
 
-Eyewear that fits your life! (logo-color.png)
+Eyewear that fits your life!
