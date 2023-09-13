@@ -8,6 +8,16 @@ import java.util.Objects;
 
 public class Glasses implements Idable {
     private int id;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    private String name;
     private String category;
     private double price;
 
@@ -42,6 +52,7 @@ public class Glasses implements Idable {
     public String toString() {
         return "Product{" +
                 "id=" + id +
+                ", name "+ name +
                 ", category='" + category + '\'' +
                 ", price=" + price +
 

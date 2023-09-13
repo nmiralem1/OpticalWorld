@@ -159,7 +159,7 @@
                <GridPane.margin>
                   <Insets left="80.0" />
                </GridPane.margin></Label>
-            <Text fill="#10006c" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="We're your one-stop destination for all your eyewear needs. Whether you need a new pair of stylish glasses, prescription sunglasses, or contact lenses, we've got you covered." textAlignment="RIGHT" wrappingWidth="413.1367244720459" GridPane.rowIndex="2">
+            <Text fill="#10006c" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="We're your one-stop destination for all your eyewear needs. Whether you need a new pair of stylish glasses, prescription sunglasses, or contact lenses, we've got you covered." textAlignment="CENTER" wrappingWidth="413.1367244720459" GridPane.rowIndex="2">
                <font>
                   <Font name="Times New Roman" size="16.0" />
                </font>
