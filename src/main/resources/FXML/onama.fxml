@@ -92,7 +92,7 @@
                 </Label>
             <Label text="       Have questions or need assistance? Contact us!" textFill="#10006c" GridPane.rowIndex="3">
                <font>
-                  <Font name="Times New Roman Bold" size="16.0" />
+                  <Font name="Times New Roman Bold Italic" size="16.0" />
                </font>
             </Label>
             <Label prefHeight="16.0" prefWidth="354.0" text="                 Address: 997 Atha Drive, Bakersfield, California" textFill="#10006c" GridPane.rowIndex="4">
