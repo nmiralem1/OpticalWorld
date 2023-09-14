@@ -32,8 +32,10 @@ public class GlassesDaoSQLImpl extends AbstractDao<Glasses> implements GlassesDa
         try {
             Glasses glasses = new Glasses();
             glasses.setId(rs.getInt("id"));
+            glasses.setName(rs.getString("name:"));
             glasses.setCategory(rs.getString("category"));
             glasses.setPrice(rs.getInt("price"));
+            glasses.setImage(rs.getString("image"));
             return glasses;
         } catch (Exception e) {
             throw new GlassesException(e.getMessage(), e);
@@ -45,17 +47,19 @@ public class GlassesDaoSQLImpl extends AbstractDao<Glasses> implements GlassesDa
     public Map<String, Object> object2row(Glasses object) {
         Map<String, Object> item = new TreeMap<>();
         item.put("id", object.getId());
+        item.put("name",object.getName());
         item.put("category", object.getCategory());
-        item.put("pricePerNight", object.getPrice());
+        item.put("price", object.getPrice());
+        item.put("image",object.getImage());
         return item;
     }
 
     public int totalGlasses() throws SQLException {
         int total = 0;
-        String query = "SELECT count(id) AS total_rooms FROM rooms";
+        String query = "SELECT count(id) AS total_glasses FROM glasses";
         try (PreparedStatement st = AbstractDao.getConnection().prepareStatement(query)) {
             ResultSet result = st.executeQuery();
-            if (result.next()) total = result.getInt("total_rooms");
+            if (result.next()) total = result.getInt("total_glasses");
         }
         return total;
     }
