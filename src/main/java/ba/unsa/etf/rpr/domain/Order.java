@@ -1,6 +1,5 @@
 package ba.unsa.etf.rpr.domain;
 
-import java.util.Date;
 import java.util.Objects;
 
 /**
