@@ -1,15 +1,15 @@
 package ba.unsa.etf.rpr.dao;
 
-import ba.unsa.etf.rpr.domain.Order;
-import ba.unsa.etf.rpr.domain.Glasses;
-import ba.unsa.etf.rpr.domain.User;
-import ba.unsa.etf.rpr.exceptions.GlassesException;
 import ba.unsa.etf.rpr.business.GlassesManager;
 import ba.unsa.etf.rpr.business.UserManager;
+import ba.unsa.etf.rpr.domain.Glasses;
+import ba.unsa.etf.rpr.domain.Order;
+import ba.unsa.etf.rpr.domain.User;
+import ba.unsa.etf.rpr.exceptions.GlassesException;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -46,6 +46,7 @@ public class OrderDaoSQLImpl extends AbstractDao<Order> implements OrderDao {
         try {
             Order reservation = new Order();
             reservation.setId(rs.getInt("id"));
+            reservation.setUserId(DaoFactory.userDao().getById(rs.getInt("userId")));
             reservation.setTotal(rs.getInt("total"));
             reservation.setGlasses(DaoFactory.glassesDao().getById(rs.getInt("glassesID")));
             return reservation;
@@ -91,10 +92,8 @@ public class OrderDaoSQLImpl extends AbstractDao<Order> implements OrderDao {
             ResultSet resultSet = statement.executeQuery();
             // Iterate over the result set and add each hotel to the list
             while (resultSet.next()) {
-
                 int user_id = resultSet.getInt("userID");
-                int room_id = resultSet.getInt("roomID");
-                Glasses glasses = r.getById(room_id);
+                Glasses glasses = r.getById(user_id);
                 User user2 = u.getById(user_id);
                 int total = resultSet.getInt("total");
                 Order reservation = new Order(total, user2, glasses);
