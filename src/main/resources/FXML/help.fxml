@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="604.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <center>
+        <GridPane style="-fx-background-color: rgb(204,229,255);" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="518.0" minWidth="10.0" prefWidth="510.0" />
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="295.0" minWidth="10.0" prefWidth="90.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints fx:id="prviRed" maxHeight="1.7976931348623157E308" minHeight="15.0" prefHeight="71.8" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="15.0" prefHeight="93.39999999999999" vgrow="ALWAYS" />
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="15.0" prefHeight="96.20000000000002" vgrow="ALWAYS" />
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="15.0" prefHeight="111.0" vgrow="ALWAYS" />
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="15.0" prefHeight="110.0" vgrow="ALWAYS" />
+                <RowConstraints />
+                <RowConstraints />
+            </rowConstraints>
+            <children>
+                <GridPane style="-fx-background-color: rgb(3,125,255);" GridPane.columnSpan="2">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Button fx:id="btnPomoc" mnemonicParsing="false" style="-fx-background-color: rgb(36,140,255)" text="Help" textFill="#10006c" underline="true" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                            <font>
+                                <Font name="Times New Roman Bold Italic" size="15.0" />
+                            </font>
+                            <padding>
+                                <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+                            </padding></Button>
+                        <Button fx:id="btnONama" mnemonicParsing="false" style="-fx-background-color: rgb(36,140,255)" text="About Us" textFill="#10006c" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                            <font>
+                                <Font name="Times New Roman Bold Italic" size="15.0" />
+                            </font>
+                            <padding>
+                                <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+                            </padding></Button>
+                    </children>
+                </GridPane>
+                <Label alignment="TOP_CENTER" contentDisplay="TOP" text="Thank you for choosing Optical World. We are committed to providing exceptional service and ensuring your optical needs are met. If you have any additional questions or require further assistance, please do not hesitate to reach out to us. Your satisfaction is our top priority." textAlignment="JUSTIFY" textFill="#10006c" wrapText="true" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS">
+                    <font>
+                        <Font name="Times New Roman" size="14.5" />
+                    </font>
+                    <GridPane.margin>
+                        <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
+                    </GridPane.margin></Label>
+                <Label layoutX="10.0" layoutY="248.0" text="If you encounter any technical problems while browsing our website or placing an order, please report them to our technical support team via techsupport@opticalworld.com." textAlignment="JUSTIFY" textFill="#10006c" wrapText="true" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+                    <GridPane.margin>
+                        <Insets left="30.0" right="30.0" top="10.0" />
+                    </GridPane.margin>
+                    <font>
+                        <Font name="Times New Roman" size="14.5" />
+                    </font>
+                </Label>
+                <Button fx:id="btnZatvori" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: rgb(255,255,255); -fx-background-radius: 10px;" text="CLOSE" textFill="#10006c" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+                    <font>
+                        <Font name="Times New Roman" size="14.0" />
+                    </font></Button>
+            <Label alignment="CENTER" contentDisplay="BOTTOM" prefHeight="28.0" prefWidth="400.0" text="Welcome to the Help Center of Optical World! " textFill="#10006c" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Times New Roman Bold Italic" size="18.0" />
+               </font>
+            </Label>
+                <ImageView fitHeight="156.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+                    <image>
+                        <Image url="@../images/logo-opticalWorld.png" />
+                    </image>
+                    <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                    </cursor>
+                    <GridPane.margin>
+                        <Insets left="295.0" />
+                    </GridPane.margin>
+                </ImageView>
+            </children>
+        </GridPane>
+    </center>
+</BorderPane>
