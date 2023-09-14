@@ -13,10 +13,6 @@ public class App {
             Properties prop = new Properties();
 
             // set the properties value
-            prop.setProperty("db.host", "sql.freedb.tech");
-            prop.setProperty("db.user", "freedb_nmiralem1");
-            prop.setProperty("db.password", "eByWjDX2a$R6!Yq");
-
             // save properties to project root folder
             prop.store(output, null);
 
