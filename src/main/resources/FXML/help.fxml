@@ -37,14 +37,14 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <Button fx:id="btnPomoc" mnemonicParsing="false" style="-fx-background-color: rgb(36,140,255)" text="Help" textFill="#10006c" underline="true" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                        <Button fx:id="btnPomoc" mnemonicParsing="false" style="-fx-background-color: rgb(255,255,255);" text="Help" textFill="#10006c" underline="true" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                             <font>
                                 <Font name="Times New Roman Bold Italic" size="15.0" />
                             </font>
                             <padding>
                                 <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
                             </padding></Button>
-                        <Button fx:id="btnONama" mnemonicParsing="false" style="-fx-background-color: rgb(36,140,255)" text="About Us" textFill="#10006c" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                        <Button fx:id="btnONama" mnemonicParsing="false" style="-fx-background-color: rgb(255,255,255);" text="About Us" textFill="#10006c" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                             <font>
                                 <Font name="Times New Roman Bold Italic" size="15.0" />
                             </font>
