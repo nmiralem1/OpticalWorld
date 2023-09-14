@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="604.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <center>
+        <GridPane style="-fx-background-color: rgb(255,255,255);" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="518.0" minWidth="10.0" prefWidth="236.60000000000002" />
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="358.40000000000003" minWidth="10.0" prefWidth="135.39999999999998" />
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="358.40000000000003" minWidth="10.0" prefWidth="244.2" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints fx:id="prviRed" maxHeight="1.7976931348623157E308" minHeight="0.0" prefHeight="52.4" vgrow="ALWAYS" />
+                <RowConstraints maxHeight="432.99999237060547" minHeight="10.0" prefHeight="213.6" vgrow="ALWAYS" />
+                <RowConstraints maxHeight="432.99999237060547" minHeight="10.0" prefHeight="119.80000000000001" vgrow="ALWAYS" />
+                <RowConstraints maxHeight="432.99999237060547" minHeight="10.0" prefHeight="39.60000000000002" vgrow="ALWAYS" />
+                <RowConstraints maxHeight="432.99999237060547" minHeight="10.0" prefHeight="57.19999999999999" vgrow="ALWAYS" />
+                <RowConstraints />
+                <RowConstraints />
+            </rowConstraints>
+            <children>
+                <GridPane style="-fx-background-color: rgb(3,125,255);" GridPane.columnSpan="3">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.79999999999998" minWidth="10.0" prefWidth="196.6" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="149.59999999999997" minWidth="10.0" prefWidth="102.59999999999997" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="186.0" minWidth="10.0" prefWidth="92.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="173.0" minWidth="10.0" prefWidth="85.60000000000002" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="131.60000000000002" minWidth="10.0" prefWidth="125.60000000000002" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Button fx:id="btnPomoc" mnemonicParsing="false" style="-fx-background-color: rgb(255,255,255);" text="Help" textFill="#10006c" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                            <font>
+                                <Font name="Times New Roman Bold Italic" size="15.0" />
+                            </font>
+                            <padding>
+                                <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+                            </padding></Button>
+                        <Button fx:id="btnONama" mnemonicParsing="false" prefHeight="39.0" prefWidth="121.0" style="-fx-background-color: rgb(255,255,255);" text="About Us" textFill="#10006c" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                            <font>
+                                <Font name="Times New Roman Bold Italic" size="15.0" />
+                            </font>
+                            <padding>
+                                <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+                            </padding></Button>
+                        <ImageView fitHeight="53.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/oci1.png" />
+                            </image>
+                            <GridPane.margin>
+                                <Insets left="10.0" />
+                            </GridPane.margin></ImageView>
+                        <Button fx:id="btnKorpa" layoutX="279.0" layoutY="16.0" mnemonicParsing="false" style="-fx-background-color: rgb(255,255,255);" text="Shopping Cart" textFill="#10006c" underline="true" GridPane.columnIndex="4">
+                            <font>
+                                <Font name="Times New Roman Bold Italic" size="15.0" />
+                            </font>
+                            <padding>
+                                <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+                            </padding>
+                        </Button>
+                    </children>
+                </GridPane>
+                <GridPane prefHeight="100.0" prefWidth="406.0" style="-fx-background-color: rgb(204,229,255);" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="301.3999847412109" minWidth="10.0" prefWidth="65.4" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="439.6000038146973" minWidth="10.0" prefWidth="430.6" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints maxHeight="41.399998092651366" minHeight="10.0" prefHeight="34.6" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="52.8" minHeight="10.0" prefHeight="52.8" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <GridPane.margin>
+                        <Insets />
+                    </GridPane.margin>
+                    <children>
+                        <Label fx:id="idLabel1" textFill="WHITE" wrapText="true" GridPane.columnIndex="1" GridPane.valignment="BOTTOM">
+                            <GridPane.margin>
+                                <Insets bottom="5.0" />
+                            </GridPane.margin>
+                            <font>
+                                <Font name="Times New Roman Bold" size="17.0" />
+                            </font>
+                        </Label>
+                        <Label text="Naziv proizvoda:" textFill="#10006c" GridPane.valignment="BOTTOM">
+                            <GridPane.margin>
+                                <Insets bottom="5.0" left="30.0" />
+                            </GridPane.margin>
+                            <font>
+                                <Font name="Times New Roman" size="15.0" />
+                            </font>
+                        </Label>
+                        <Label text="Cijena proizvoda:" textFill="#10006c" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                            <GridPane.margin>
+                                <Insets bottom="10.0" left="30.0" top="5.0" />
+                            </GridPane.margin>
+                            <font>
+                                <Font name="Times New Roman" size="15.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="idLabel2" textFill="WHITE" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                            <GridPane.margin>
+                                <Insets top="5.0" />
+                            </GridPane.margin>
+                            <font>
+                                <Font name="Times New Roman Bold" size="17.0" />
+                            </font>
+                            <padding>
+                                <Insets bottom="10.0" />
+                            </padding>
+                        </Label>
+                    </children>
+                    <opaqueInsets>
+                        <Insets right="50.0" />
+                    </opaqueInsets>
+                </GridPane>
+                <Button fx:id="btnObrisi" mnemonicParsing="false" prefHeight="40.0" prefWidth="125.0" style="-fx-background-color: rgb(223,223,223); -fx-background-radius: 10px;" text="DELETE" textFill="#10006c" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                    <font>
+                        <Font name="Times New Roman" size="14.0" />
+                    </font>
+                    <GridPane.margin>
+                        <Insets left="90.0" />
+                    </GridPane.margin>
+                </Button>
+                <Button fx:id="btnNaruci" mnemonicParsing="false" prefHeight="40.0" prefWidth="125.0" style="-fx-background-color: rgb(223,223,223); -fx-background-radius: 10px;" text="ORDER" textFill="#10006c" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                    <font>
+                        <Font name="Times New Roman" size="14.0" />
+                    </font>
+                    <GridPane.margin>
+                        <Insets />
+                    </GridPane.margin>
+                </Button>
+                <ImageView fitHeight="212.0" fitWidth="256.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                    <image>
+                        <Image url="@../images/glasses.png" />
+                    </image></ImageView>
+                <Button fx:id="btnZatvori" layoutX="108.0" layoutY="392.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="125.0" style="-fx-background-color: rgb(223,223,223); -fx-background-radius: 10px;" text="CLOSE" textFill="#10006c" GridPane.columnIndex="2" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                    <font>
+                        <Font name="Times New Roman" size="14.0" />
+                    </font>
+                    <GridPane.margin>
+                        <Insets left="10.0" />
+                    </GridPane.margin>
+                </Button>
+                <Label fx:id="idLabel3" textFill="RED" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="Times New Roman" size="14.0" />
+                    </font></Label>
+            </children>
+        </GridPane>
+    </center>
+</BorderPane>
