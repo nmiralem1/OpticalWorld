@@ -8,7 +8,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-
+/**
+ * Controller that will add new glasses to the database.
+ */
 public class AddGlassesController {
 
 
@@ -31,10 +33,14 @@ public class AddGlassesController {
         saveButton.setOnMouseClicked(event -> saveGlasses());
     }
 
+    /**
+     * @author nmiralem1
+     * Initialize method with no parameters.
+     */
     @FXML
     private void saveGlasses() {
         try {
-            // Validacija unosa
+            // Validation of the input
             String categoryText = categoryField.getText().trim();
             String nameText = nameField.getText().trim();
             String priceText = priceField.getText().trim();
@@ -56,10 +62,10 @@ public class AddGlassesController {
             glasses.setPrice(price);
             glasses.setName(nameText);
 
-            // Ažuriranje sobe u bazi podataka
+            // Updating glasses in database
             GlassesManager.add(glasses);
 
-            // Ažuriranje tabele u AdminAccountController-u
+            // Updating table in AdminPanelController
             adminPanelController.refreshTables();
 
             utils.closeCurrentStage(saveButton);
@@ -67,7 +73,11 @@ public class AddGlassesController {
             showAlert("Invalid input. Please enter valid numeric values.");
         }
     }
-
+    /**
+     * @param message
+     * @author nmiralem1
+     * Method that will show alert if some unvalid action is occured
+     */
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
