@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="698.0" style="-fx-background-color: aqua;" stylesheets="@../css/projekat.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="698.0" style="-fx-background-color: aqua;" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
    <Button fx:id="signInButton" layoutX="549.0" layoutY="413.0" mnemonicParsing="false" onAction="#handleLogin" text="LOG IN" textFill="WHITE">
       <font>
          <Font name="Calibri Light Italic" size="12.0" />
