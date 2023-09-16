@@ -14,7 +14,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 
 import java.sql.SQLException;
-
+/**
+ * Controller that will generate all your previous orders.
+ */
 public class MyOrdersController {
 
     @FXML private Button homeButton, myProfileButton;
