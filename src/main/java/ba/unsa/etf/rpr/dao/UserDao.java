@@ -6,5 +6,5 @@ import java.sql.SQLException;
 
 public interface UserDao extends Dao<User> {
     User findUsername(String usernameField) throws GlassesException;
-    public int totalUsers() throws SQLException;
+    int totalUsers() throws SQLException;
 }
