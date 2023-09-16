@@ -17,7 +17,6 @@ public class OrderManager {
             }
             throw e;
         }
-
     }
 
     public Order add(Order r) throws GlassesException {
