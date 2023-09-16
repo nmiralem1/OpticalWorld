@@ -7,3 +7,41 @@
 .poljeJeIspravno{
 -fx-background-color:yellowgreen;
 }
+.button {
+    -fx-text-fill: white;
+    -fx-background-radius: 8px;
+    -fx-background-color:  #4489F0;
+    -fx-font-family: "Montserrat ExtraBold";
+}
+
+.text-field .passwordField{
+    -fx-background-radius: 8px;
+    -fx-prompt-text-fill: #4489F0;
+    -fx-background-color: transparent;
+}
+
+.root {
+    -fx-background-color:  aqua;
+    -fx-text-fill: white;
+    -fx-font-family: "Montserrat ExtraBold", "Montserrat Black";
+    -fx-font: 14px "Montserrat ExtraBold";
+    -fx-font-style: normal;
+}
+
+.adminPane {
+    -fx-background-color: #F5EFE7;
+    -fx-background-radius: 7px;
+}
+
+.text-area {
+    -fx-text-fill: white;
+}
+
+.statsLabel {
+    -fx-font-size: 26px;
+}
+
+.totalLabel .nameLabel {
+    -fx-text-fill: #F5EFE7;
+    -fx-font-size: 30px;
+}
