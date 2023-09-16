@@ -2,7 +2,7 @@ package ba.unsa.etf.rpr.domain;
 import java.util.Objects;
 
 /**
- * Information about class Product
+ * Information about class Glasses
  * @author nmiralem1
  */
 
