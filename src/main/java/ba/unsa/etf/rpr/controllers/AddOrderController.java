@@ -13,6 +13,9 @@ import javafx.scene.control.ComboBox;
 
 import java.time.format.DateTimeParseException;
 import java.util.List;
+/**
+ * Controller that will add order to the database.
+ */
 
 public class AddOrderController {
     @FXML private Button saveButton;
@@ -41,36 +44,38 @@ public class AddOrderController {
         }
     }
 
+    /**
+     * function to save information about new order.
+     */
 
     private void saveOrder() {
         try {
-            // Validacija unosa
+            //First we have to make sure that selected user and selected glasses are valid
             String selectedUser = userComboBox.getValue();
             String selectedGlasses = glassesComboBox.getValue();
 
             if (selectedGlasses == null || selectedUser == null) {
-                showAlert("Please select a room and valid check-in/check-out dates.");
+                showAlert("Please select a glasses with valid ID!");
                 return;
             }
 
             double totalPrice = g.getById(Integer.parseInt(selectedGlasses)).getPrice();
-            // Calculate the total based on room price and number of nights
+            // Calculate the total price based on items in your order
 
             Order order = new Order();
             order.setGlassesID(g.getById(Integer.parseInt(selectedGlasses)));
             order.setTotal((int) totalPrice);
             order.setUserID(user);
 
-            // Save the reservation to the database (you should implement this logic)
+            // Save the order to the database
             o.add(order);
 
-            // Ažuriranje tabele u AdminAccountController-u
+            // update table in AdminAccountController
             adminAccountController.refreshTables();
 
-            // Close the dialog or perform other actions as needed
+            // Close the dialog or perform other actions if needed
             utils.closeCurrentStage(saveButton);
-        } catch (DateTimeParseException e) {
-            showAlert("Invalid date format. Please enter valid dates.");
+
         } catch (NumberFormatException | GlassesException e) {
             showAlert("Invalid input. Please enter valid numeric values.");
         }
