@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.business.GlassesManager;
+import ba.unsa.etf.rpr.business.OrderManager;
 import ba.unsa.etf.rpr.business.UserManager;
 import ba.unsa.etf.rpr.domain.Glasses;
 import ba.unsa.etf.rpr.domain.Order;
@@ -24,7 +25,7 @@ public class OrderDaoSQLImpl extends AbstractDao<Order> implements OrderDao {
     private final GlassesManager r = new GlassesManager();
     private final UserManager u = new UserManager();
     private OrderDaoSQLImpl() {
-        super("reservations");
+        super("orders");
     }
 
     public static OrderDaoSQLImpl getInstance(){
@@ -46,9 +47,9 @@ public class OrderDaoSQLImpl extends AbstractDao<Order> implements OrderDao {
         try {
             Order reservation = new Order();
             reservation.setId(rs.getInt("id"));
-            reservation.setUserId(DaoFactory.userDao().getById(rs.getInt("userId")));
+            reservation.setUserID(DaoFactory.userDao().getById(rs.getInt("userID")));
+            reservation.setGlassesID(DaoFactory.glassesDao().getById(rs.getInt("glassesID")));
             reservation.setTotal(rs.getInt("total"));
-            reservation.setGlasses(DaoFactory.glassesDao().getById(rs.getInt("glassesID")));
             return reservation;
         } catch (Exception e) {
             throw new GlassesException(e.getMessage(), e);
@@ -63,8 +64,8 @@ public class OrderDaoSQLImpl extends AbstractDao<Order> implements OrderDao {
     public Map<String, Object> object2row(Order object) {
         Map<String, Object> item = new TreeMap<>();
         item.put("id", object.getId());
-        item.put("userID", object.getUserId().getId());
-        item.put("glassesID",object.getGlasses().getId());
+        item.put("userID", object.getUserID().getId());
+        item.put("glassesID",object.getGlassesID().getId());
         item.put("total",object.getTotal());
         return item;
     }
@@ -72,7 +73,7 @@ public class OrderDaoSQLImpl extends AbstractDao<Order> implements OrderDao {
     @Override
     public int totalIncome() throws SQLException {
         int totalIncome = 0;
-        String query = "SELECT SUM(total) AS total_price FROM reservations";
+        String query = "SELECT SUM(total) AS total_price FROM orders";
         try (PreparedStatement st = AbstractDao.getConnection().prepareStatement(query)) {
             ResultSet result = st.executeQuery();
             if (result.next()) totalIncome = result.getInt("total_price");
@@ -80,23 +81,25 @@ public class OrderDaoSQLImpl extends AbstractDao<Order> implements OrderDao {
         return totalIncome;
     }
 
-    public List<Order> getAllForUser(User user){
+    public List<Order> getAllForUser(User user) {
         List<Order> userReservations = new ArrayList<>();
-        // Connect to the database
-        try{
+
+        try {
             // Prepare a statement to execute the query
-            String query = "SELECT * FROM reservations WHERE userID = ?";
+            String query = "SELECT glassesID, userID, total FROM orders WHERE userID = ?";
             PreparedStatement statement = getConnection().prepareStatement(query);
             statement.setObject(1, user.getId());
+
             // Execute the query and get the result set
             ResultSet resultSet = statement.executeQuery();
-            // Iterate over the result set and add each hotel to the list
+
             while (resultSet.next()) {
-                int user_id = resultSet.getInt("userID");
-                Glasses glasses = r.getById(user_id);
-                User user2 = u.getById(user_id);
+                int glassesId = resultSet.getInt("glassesID");
+                int userId = resultSet.getInt("userID");
                 int total = resultSet.getInt("total");
-                Order reservation = new Order(total, user2, glasses);
+
+                // Create an Order object using the retrieved values
+                Order reservation = new Order(r.getById(glassesId), u.getById(userId), total);
                 userReservations.add(reservation);
             }
         } catch (SQLException e) {
@@ -104,7 +107,9 @@ public class OrderDaoSQLImpl extends AbstractDao<Order> implements OrderDao {
         } catch (GlassesException e) {
             throw new RuntimeException(e);
         }
-        // Return the list of hotels
+
+        // Return the list of orders
         return userReservations;
     }
+
 }
