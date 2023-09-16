@@ -6,6 +6,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface OrderDao extends Dao<Order> {
-    public int totalIncome() throws SQLException;
-    public List<Order> getAllForUser(User user) throws SQLException;
+    int totalIncome() throws SQLException;
+    List<Order> getAllForUser(User user) throws SQLException;
 }
