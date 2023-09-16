@@ -8,7 +8,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-
+/**
+ * Controller that will update glasses from database.
+ */
 public class UpdateGlassesController {
 
     @FXML private TextField nameField, priceField, categoryField, imageField;
@@ -19,22 +21,20 @@ public class UpdateGlassesController {
     private AdminPanelController adminPanelController;
     private User user = new User();
 
-    public UpdateGlassesController(AdminPanelController adminAccountController, User user, Glasses room) {
+    public UpdateGlassesController(AdminPanelController adminAccountController, User user, Glasses glasses) {
         this.adminPanelController = adminAccountController;
         this.user = user;
-        this.glassesToUpdate = room;
+        this.glassesToUpdate = glasses;
     }
 
     @FXML
     private void initialize() {
         if (glassesToUpdate == null) {
-            // Prikazati upozorenje korisniku da nijedna soba nije izabrana
             showAlert("Please select glasses to update.");
             utils.closeCurrentStage(saveButton);
             return;
         }
 
-        // Postavite polja za unos informacija o sobi na trenutne vrednosti sobe
         categoryField.setText(glassesToUpdate.getCategory());
         priceField.setText(String.valueOf(glassesToUpdate.getPrice()));
         nameField.setText(glassesToUpdate.getName());
@@ -48,7 +48,7 @@ public class UpdateGlassesController {
     @FXML
     private void updateGlasses() {
         try {
-            // Validacija unosa
+            // Validate the input
             String categoryText = categoryField.getText().trim();
             String nameText = nameField.getText().trim();
             String priceText = priceField.getText().trim();
@@ -65,15 +65,12 @@ public class UpdateGlassesController {
                 return;
             }
 
-            // Ažuriranje informacija o sobi
             glassesToUpdate.setCategory(categoryText);
             glassesToUpdate.setPrice(price);
             glassesToUpdate.setName(nameText);
 
-            // Ažuriranje sobe u bazi podataka
             gm.update(glassesToUpdate);
 
-            // Ažuriranje tabele u AdminAccountController-u
             adminPanelController.refreshTables();
 
             utils.closeCurrentStage(saveButton);
