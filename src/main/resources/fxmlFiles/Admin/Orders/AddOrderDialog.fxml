@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane alignment="center" hgap="10" prefHeight="247.0" prefWidth="387.0" stylesheets="@../../../css/projekat.css" vgap="10" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+
+    <Label text="Add Order" GridPane.columnIndex="0" GridPane.columnSpan="2" />
+
+    <Label text="User" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+
+
+    <Button fx:id="saveButton" text="ADD" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+   <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+   <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+   <Label text="Glasses" GridPane.rowIndex="2" />
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="30.666659037272126" />
+      <RowConstraints maxHeight="41.99995930989584" minHeight="0.0" prefHeight="31.33335367838542" />
+      <RowConstraints maxHeight="47.33335367838541" minHeight="18.000040690104157" prefHeight="29.999979654947907" />
+   </rowConstraints>
+   <padding>
+      <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+   </padding>
+</GridPane>
