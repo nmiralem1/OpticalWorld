@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class GlassesManager {
-    public void delete(int RoomId) throws GlassesException {
+    public void delete(int GlassesId) throws GlassesException {
         try {
-            DaoFactory.glassesDao().delete(RoomId);
+            DaoFactory.glassesDao().delete(GlassesId);
         } catch (GlassesException e) {
             if (e.getMessage().contains("FOREIGN KEY")) {
                 throw new GlassesException("NO");
