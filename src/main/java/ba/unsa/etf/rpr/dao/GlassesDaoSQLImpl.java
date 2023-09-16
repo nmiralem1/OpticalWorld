@@ -10,7 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-
+/**
+ * MySQL Implementation of DAO
+ *
+ * @author nmiralem1
+ */
 public class GlassesDaoSQLImpl extends AbstractDao<Glasses> implements GlassesDao {
     private static GlassesDaoSQLImpl instance = null;
     private GlassesDaoSQLImpl() {
