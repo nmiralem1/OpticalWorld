@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.domain.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -13,6 +14,14 @@ public class AboutUsController {
     private Button signUpButton, helpButton;
     @FXML private ImageView goBack;
     private final Utils utils = new Utils();
+    private User user = new User();
+
+    public AboutUsController(User user) {
+        this.user = user;
+    }
+
+    public AboutUsController() {
+    }
 
     public void signUpOnAction(ActionEvent actionEvent) throws IOException {
         utils.changeWindow(signUpButton, "Sign Up", "/fxmlFiles/SignUp.fxml", new SignUpController());
