@@ -1,6 +1,5 @@
 package ba.unsa.etf.rpr.dao;
-import ba.unsa.etf.rpr.exceptions.GlassesException;
-import ba.unsa.etf.rpr.domain.Idable;
+
 import java.sql.*;
 import java.util.*;
 
@@ -15,7 +14,6 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
     }
 
     private void createConnection(){
-        System.out.println("Kreiran");
         if(AbstractDao.connection==null) {
             try {
                 Properties p = new Properties();
