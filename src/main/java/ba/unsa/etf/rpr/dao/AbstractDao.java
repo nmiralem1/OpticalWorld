@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.dao;
-
+import ba.unsa.etf.rpr.exceptions.GlassesException;
+import ba.unsa.etf.rpr.domain.Idable;
 import java.sql.*;
 import java.util.*;
 
