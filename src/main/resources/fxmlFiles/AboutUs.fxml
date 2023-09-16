@@ -7,7 +7,7 @@
 <?import javafx.scene.text.*?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0"
-      prefWidth="698.0" style="-fx-background-color: aqua;" stylesheets="@../css/projekat.css"
+      prefWidth="698.0" style="-fx-background-color: aqua;" stylesheets="@../css/styles.css"
       xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <Button fx:id="signUpButton" onAction="#signUpOnAction" layoutX="54.0" layoutY="441.0" mnemonicParsing="false" text="SIGN UP" textFill="WHITE"/>
    <Button fx:id="aboutUsButton" layoutX="54.0" layoutY="202.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="95.0"
