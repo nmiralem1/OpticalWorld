@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * Root interface for all DAO classes
- *
+ * @author nmiralem1
  */
 public interface Dao<T> {
     /**
@@ -35,7 +35,7 @@ public interface Dao<T> {
     void delete(int id) throws GlassesException;
 
     /**
-     * Lists all entities from database. WARNING: Very slow operation because it reads all records.
+     * Lists all entities from database.
      * @return List of entities from database
      */
     List<T> getAll() throws GlassesException;
