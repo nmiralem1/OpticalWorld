@@ -7,14 +7,8 @@ import java.util.Objects;
  */
 public class User implements Idable {
 
-    private int id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String username;
-    private String password;
-    private int role;
-
+    private int id, role;
+    private String firstName, lastName, email, username, password;
 
     public User(String firstName, String lastName, String email, int role, String username, String password) {
         this.firstName = firstName;
@@ -69,9 +63,6 @@ public class User implements Idable {
     }
     public void setPassword(String password) {
         this.password = password;
-    }
-    public int isAdministrator() {
-        return role;
     }
     public void setRole(int role) {
         this.role = role;
