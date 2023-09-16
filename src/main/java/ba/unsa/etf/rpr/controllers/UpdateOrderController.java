@@ -14,7 +14,9 @@ import javafx.scene.control.ComboBox;
 
 import java.time.format.DateTimeParseException;
 import java.util.List;
-
+/**
+ * Controller that will update specific order from database.
+ */
 public class UpdateOrderController {
     @FXML private Button saveButton;
 
@@ -35,7 +37,6 @@ public class UpdateOrderController {
     @FXML
     private void initialize() throws GlassesException {
         if (selectedOrder == null) {
-            // Prikazati upozorenje korisniku da nijedna soba nije izabrana
             showAlert("Please select glasses to update.");
             utils.closeCurrentStage(saveButton);
             return;
@@ -46,7 +47,6 @@ public class UpdateOrderController {
         List<Glasses> glasses = GlassesManager.getAll();
         List<User> users = UserManager.getAll();
 
-        // Extract room IDs and populate the ComboBox
         for (Glasses glass : glasses) {
             glassesComboBox.getItems().add(String.valueOf(glass.getId()));
         }
@@ -55,7 +55,6 @@ public class UpdateOrderController {
             userComboBox.getItems().add(String.valueOf(user.getId()));
         }
 
-        // Postavite polja za unos informacija o sobi na trenutne vrednosti sobe
 //        glassesComboBox.se(selectedOrder.getGlassesID());
   //      userIdField.setText(selectedOrder.getUserID());
     }
@@ -63,34 +62,27 @@ public class UpdateOrderController {
 
     private void saveOrder() {
         try {
-            // Validacija unosa
             String selectedUser = userComboBox.getValue();
             String selectedGlasses = glassesComboBox.getValue();
 
             if (selectedGlasses == null || selectedUser == null) {
-                showAlert("Please select a room and valid check-in/check-out dates.");
+                showAlert("Please select glasses");
                 return;
             }
 
             double totalPrice = g.getById(Integer.parseInt(selectedGlasses)).getPrice();
-            // Calculate the total based on room price and number of nights
 
             Order order = new Order();
             order.setGlassesID(g.getById(Integer.parseInt(selectedGlasses)));
             order.setTotal((int) totalPrice);
             order.setUserID(user);
 
-            // Save the reservation to the database (you should implement this logic)
             o.update(order);
-
-            // Ažuriranje tabele u AdminAccountController-u
             adminAccountController.refreshTables();
 
             // Close the dialog or perform other actions as needed
             utils.closeCurrentStage(saveButton);
-        } catch (DateTimeParseException e) {
-            showAlert("Invalid date format. Please enter valid dates.");
-        } catch (NumberFormatException | GlassesException e) {
+        }  catch (NumberFormatException | GlassesException e) {
             showAlert("Invalid input. Please enter valid numeric values.");
         }
     }
