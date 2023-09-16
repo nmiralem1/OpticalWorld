@@ -35,7 +35,11 @@ public class GlassesManager {
         return DaoFactory.glassesDao().getAll();
     }
 
-    public int totalRooms() throws SQLException{
+    public int totalGlasses() throws SQLException{
         return DaoFactory.glassesDao().totalGlasses();
+    }
+
+    public List<Glasses> getAllByCategory(String category){
+        return DaoFactory.glassesDao().getAllByCategory(category);
     }
 }
