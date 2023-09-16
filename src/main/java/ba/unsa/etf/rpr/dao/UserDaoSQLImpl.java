@@ -11,19 +11,15 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao {
     private UserDaoSQLImpl() {
         super("users");
     }
-
-
     public static UserDaoSQLImpl getInstance(){
         if(instance==null)
             instance = new UserDaoSQLImpl();
         return instance;
     }
-
     public static void removeInstance(){
         if(instance!=null)
             instance=null;
     }
-
     @Override
     public User row2object(ResultSet rs) throws GlassesException{
         try {
