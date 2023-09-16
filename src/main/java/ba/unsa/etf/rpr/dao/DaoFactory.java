@@ -1,5 +1,9 @@
 package ba.unsa.etf.rpr.dao;
-
+/**
+ * Factory method for singleton implementation of DAOs
+ *
+ * @author nmiralem1
+ */
 public class DaoFactory {
 
     private static final GlassesDao glassesDao = GlassesDaoSQLImpl.getInstance();
