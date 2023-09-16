@@ -8,7 +8,7 @@ public class App {
 
     public static void main(String[] args) {
 
-        try (OutputStream output = new FileOutputStream("src/main/resources/database.properties")) {
+        try (OutputStream output = new FileOutputStream("src/main/resources/db.properties")) {
 
             Properties prop = new Properties();
 
