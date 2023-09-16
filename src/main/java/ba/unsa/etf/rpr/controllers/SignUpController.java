@@ -14,7 +14,9 @@ import java.awt.*;
 import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 import java.util.regex.Pattern;
-
+/**
+ * Controller that will request your data and sign you up.
+ */
 public class SignUpController extends Component {
 
     @FXML
@@ -55,7 +57,6 @@ public class SignUpController extends Component {
         boolean check = false;
         // Validate the input
         if (Objects.equals(name.getText(), "")) {
-            // Display an error message
             badName.setText("Name can't be empty.");
             check = true;
         }
