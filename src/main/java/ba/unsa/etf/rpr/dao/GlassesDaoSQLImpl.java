@@ -6,13 +6,15 @@ import ba.unsa.etf.rpr.exceptions.GlassesException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 public class GlassesDaoSQLImpl extends AbstractDao<Glasses> implements GlassesDao {
     private static GlassesDaoSQLImpl instance = null;
     private GlassesDaoSQLImpl() {
-        super("rooms");
+        super("glasses");
     }
 
 
@@ -32,7 +34,7 @@ public class GlassesDaoSQLImpl extends AbstractDao<Glasses> implements GlassesDa
         try {
             Glasses glasses = new Glasses();
             glasses.setId(rs.getInt("id"));
-            glasses.setName(rs.getString("name:"));
+            glasses.setName(rs.getString("name"));
             glasses.setCategory(rs.getString("category"));
             glasses.setPrice(rs.getInt("price"));
             glasses.setImage(rs.getString("image"));
@@ -62,6 +64,37 @@ public class GlassesDaoSQLImpl extends AbstractDao<Glasses> implements GlassesDa
             if (result.next()) total = result.getInt("total_glasses");
         }
         return total;
+    }
+
+    public List<Glasses> getAllByCategory(String category) {
+        List<Glasses> glasses = new ArrayList<>();
+
+        // Connect to the database
+        try {
+            // Prepare a statement to execute the query
+            String query = "SELECT * FROM glasses WHERE category = ?";
+            PreparedStatement statement = getConnection().prepareStatement(query);
+            statement.setObject(1, category);
+
+            // Execute the query and get the result set
+            ResultSet resultSet = statement.executeQuery();
+
+            // Iterate over the result set and add each pair of glasses to the list
+            while (resultSet.next()) {
+                Glasses g = new Glasses();
+                g.setId(resultSet.getInt("id"));
+                g.setName(resultSet.getString("name"));
+                g.setCategory(resultSet.getString("category"));
+                g.setImage(resultSet.getString("image"));
+                g.setPrice(resultSet.getDouble("price"));
+                glasses.add(g);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // Return the list of glasses
+        return glasses;
     }
 
 
