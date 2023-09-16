@@ -4,9 +4,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane stylesheets="@../../../css/projekat.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane stylesheets="@../../../css/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox alignment="CENTER" layoutX="9.0" prefHeight="200.0" prefWidth="300.0" spacing="10.0" stylesheets="@../../../css/projekat.css">
+      <VBox alignment="CENTER" layoutX="9.0" prefHeight="200.0" prefWidth="300.0" spacing="10.0" stylesheets="@../../../css/styles.css">
          <children>
             <Label text="Delete Glasses Confirmation">
                <font>
