@@ -15,6 +15,9 @@ import javafx.scene.image.ImageView;
 
 import java.sql.SQLException;
 import java.util.List;
+/**
+ * Controller that sets home page for Admin.
+ */
 public class AdminPanelController {
 
     private User user = new User();
@@ -41,6 +44,9 @@ public class AdminPanelController {
     private final GlassesManager gm = new GlassesManager();
     private final UserManager um = new UserManager();
     private final Utils utils = new Utils();
+    /**
+     * Initialize method with no parameters.
+     */
     public void initialize() throws SQLException {
 
         myProfileButton.setOnMouseClicked(event -> utils.changeWindow(myProfileButton, "My Profile", "/fxmlFiles/MyProfile.fxml", new MyProfileController(user)));
@@ -69,8 +75,8 @@ public class AdminPanelController {
         updateGlassesButton.setOnMouseClicked(event -> {
             Glasses selectedGlasses = glassesTable.getSelectionModel().getSelectedItem();
             if (selectedGlasses == null) {
-                // Prikazati upozorenje korisniku da nijedne naocale nisu izabrane
-                showAlert("Please select a room to update.");
+                // Show alert that no glasses were selected
+                showAlert("Please select glasses to update.");
             } else {
                 utils.openDialog("Update Glasses", "/fxmlFiles/Admin/Glasses/updateGlassesDialog.fxml", new UpdateGlassesController(this, user, selectedGlasses));
             }
@@ -79,10 +85,10 @@ public class AdminPanelController {
         deleteGlassesButton.setOnMouseClicked(event -> {
             Glasses selectedGlasses = glassesTable.getSelectionModel().getSelectedItem();
             if (selectedGlasses == null) {
-                // Prikazati upozorenje korisniku da nijedna soba nije izabrana
-                showAlert("Please select a room to update.");
+                // Show alert that no glasses were selected
+                showAlert("Please select glasses to update.");
             } else {
-                utils.openDialog("Delete Room", "/fxmlFiles/Admin/Glasses/DeleteGlassesDialog.fxml", new DeleteGlassesController(this, user, selectedGlasses));
+                utils.openDialog("Delete Glasses", "/fxmlFiles/Admin/Glasses/DeleteGlassesDialog.fxml", new DeleteGlassesController(this, user, selectedGlasses));
             }
         });
 
@@ -90,10 +96,9 @@ public class AdminPanelController {
             Order selectedOrder = orderTable.getSelectionModel().getSelectedItem();
 
             if (selectedOrder == null) {
-                // Prikazati upozorenje korisniku da nijedna rezervacija nije izabrana
-                showAlert("Please select a reservation to update.");
+                // Show alert that no order was selected
+                showAlert("Please select an order to update.");
             } else {
-                // Assuming you have a method to open a dialog for reservation update
                 utils.openDialog("Update Order", "/fxmlFiles/Admin/Order/UpdateOrderDialog.fxml", new UpdateOrderController(this, user, selectedOrder));
             }
         });
@@ -102,10 +107,8 @@ public class AdminPanelController {
             Order selectedOrder = orderTable.getSelectionModel().getSelectedItem();
 
             if (selectedOrder == null) {
-                // Prikazati upozorenje korisniku da nijedna rezervacija nije izabrana
-                showAlert("Please select a order to delete.");
+                showAlert("Please select an order to delete.");
             } else {
-                // Assuming you have a method to open a dialog for reservation deletion
                 utils.openDialog("Delete Order", "/fxmlFiles/Admin/Order/DeleteOrderDialog.fxml", new DeleteOrderController(this, user, selectedOrder));
             }
         });
@@ -124,11 +127,11 @@ public class AdminPanelController {
     }
 
     /**
-     * fetch data from DB
+     * refresh then get all data from database
      */
     public void refreshTables() {
         try {
-            // Fetch data from your data source (e.g., UserManager, RoomManager and ReservationManager)
+            // Fetch data from data source
             List<User> userList = UserManager.getAll();
             List<Glasses> glassesList = GlassesManager.getAll();
             List<Order> orderList = OrderManager.getAll();
