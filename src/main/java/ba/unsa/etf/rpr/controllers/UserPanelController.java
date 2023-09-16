@@ -5,7 +5,6 @@ import ba.unsa.etf.rpr.business.OrderManager;
 import ba.unsa.etf.rpr.domain.Glasses;
 import ba.unsa.etf.rpr.domain.Order;
 import ba.unsa.etf.rpr.domain.User;
-import ba.unsa.etf.rpr.exceptions.GlassesException;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -23,9 +22,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-import java.time.format.DateTimeParseException;
 import java.util.List;
-
+/**
+ * Controller that will show home page for User.
+ */
 public class UserPanelController {
     @FXML
     private Tab tab1, tab2, tab3;
@@ -34,7 +34,7 @@ public class UserPanelController {
     @FXML
     private Label totalLabel, nameLabel;
     @FXML
-    private Button buyButton, myProfileButton, myReservationsButton;
+    private Button buyButton, myProfileButton, myOrdersButton;
     @FXML
     private ImageView logOutButton;
 
@@ -61,14 +61,16 @@ public class UserPanelController {
 
         myProfileButton.setOnMouseClicked(event -> utils.changeWindow(myProfileButton, "My Profile", "/fxmlFiles/MyProfile.fxml", new MyProfileController(user)));
         logOutButton.setOnMouseClicked(event -> utils.changeWindow(logOutButton, "Main Page", "/fxmlFiles/Home.fxml", new HomeController()));
-        myReservationsButton.setOnMouseClicked(event -> utils.changeWindow(myReservationsButton, "My Reservations", "/fxmlFiles/Customer/MyReservations.fxml", new MyOrdersControlller(user)));
+        myOrdersButton.setOnMouseClicked(event -> utils.changeWindow(myOrdersButton, "My Orders", "/fxmlFiles/Customer/MyOrders.fxml", new MyOrdersController(user)));
 
         nameLabel.setText(user.getFirstName());
         loadGlasses("Dioptric", tab3, scroll3);
         loadGlasses("Sunglasses", tab1, scroll1);
         loadGlasses("Lenses", tab2, scroll2);
 
-        // Postavite listener za izabrane proizvode
+        /** Set listener for chosen items
+         *
+         */
         selectedGlassesList.addListener(new ListChangeListener<Glasses>() {
             @Override
             public void onChanged(Change<? extends Glasses> change) {
@@ -88,15 +90,14 @@ public class UserPanelController {
     }
 
     private void loadGlasses(String type, Tab tab, ScrollPane scroll) {
-        List<Glasses> glassesList = gm.getAllByCategory(type); // Dobijanje liste prescription glasses proizvoda
+        List<Glasses> glassesList = gm.getAllByCategory(type);
 
         FlowPane productContainer = new FlowPane();
-        productContainer.setHgap(20); // Horizontalni razmak
-        productContainer.setVgap(20); // Vertikalni razmak
+        productContainer.setHgap(20);
+        productContainer.setVgap(20);
         productContainer.setPadding(new Insets(20));
 
         for (Glasses glasses : glassesList) {
-            // Kreiranje prikaza proizvoda (slika, naziv, cijena, efekti, itd.)
             Image image = new Image(glasses.getImage());
             ImageView imageView = new ImageView(image);
             imageView.setFitHeight(120);
@@ -110,24 +111,22 @@ public class UserPanelController {
             productPrice.setTextFill(Color.BLACK);
             productPrice.setFont(Font.font(null, FontWeight.NORMAL, 14));
 
-            // Dodajte efekat senke za bolji izgled
+            // Shadow effect
             DropShadow dropShadow = new DropShadow();
             dropShadow.setRadius(5);
             imageView.setEffect(dropShadow);
 
-            // Kreiranje VBox za svaki proizvod
+            // Creating VBox for each item
             VBox productBox = new VBox();
-            productBox.setAlignment(Pos.CENTER); // Centriraj sadržaj
-            productBox.setSpacing(10); // Razmak između elemenata u VBox-u
+            productBox.setAlignment(Pos.CENTER);
+            productBox.setSpacing(10);
             productBox.getChildren().addAll(imageView, productName, productPrice);
 
             productBox.setOnMouseClicked(event -> selectGlasses(glasses));
 
-            // Dodajte proizvod u FlowPane
             productContainer.getChildren().add(productBox);
         }
 
-        // Postavljanje FlowPane unutar ScrollPane-a
         scroll.setContent(productContainer);
     }
 
@@ -144,8 +143,6 @@ public class UserPanelController {
 
         totalLabel.setText("$" + totalAmount);
         totalLabel.setTextFill(Color.BLACK);
-
-        // Ažurirajte tabelu ispod totalLabel sa izabranim proizvodima
         selectedGlassesTableView.getItems().setAll(selectedGlassesList);
     }
 
@@ -155,14 +152,12 @@ public class UserPanelController {
         try{
             System.out.println(selectedGlassesList);
         if (!selectedGlassesList.isEmpty()) {
-            // Implement your purchase logic here if needed
             saveOrder();
             // For now, just reset the selection
             selectedGlassesList.clear();
             totalAmount = 0.0;
             totalLabel.setText("$" + totalAmount);
         } else {
-            // Display an error message and set the text color to red
             totalLabel.setText("Select a product before buying.");
             totalLabel.setTextFill(Color.RED);
         }
@@ -172,7 +167,6 @@ public class UserPanelController {
     private void saveOrder() {
         try{
         for(Glasses glass: selectedGlassesList){
-            System.out.println("lista"+glass);
             Order order = new Order();
             order.setTotal((int) glass.getPrice());
             order.setUserID(user);
