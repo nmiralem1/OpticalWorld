@@ -6,7 +6,9 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 
 import java.io.IOException;
-
+/**
+ * Controller that will help you with technical problems on our app.
+ */
 public class HelpController {
 
     @FXML private Button aboutUsButton, signInButton, signUpButton, helpButton;
