@@ -7,12 +7,12 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
 /**
- * The type My profile page controller.
+ * My profile page controller that will print your data.
  */
 public class MyProfileController {
     @FXML private Label usernameLabel, firstNameLabel, lastNameLabel, emailLabel, nameLabel;
     @FXML private ImageView logOutButton;
-    @FXML private Button goBack, myReservationsButton;
+    @FXML private Button goBack, myOrdersButton;
     private final User user;
 
     public MyProfileController(User u) { this.user = u; }
@@ -31,7 +31,7 @@ public class MyProfileController {
         goBack.setOnMouseClicked(event -> utils.changeWindow(goBack, fxmlTitle, fxmlPath, (user.getRole() == 1) ? new AdminPanelController(user) : new UserPanelController(user)));
         logOutButton.setOnMouseClicked(event -> utils.changeWindow(logOutButton, "Main Page", "/fxmlFiles/Home.fxml", new HomeController()));
 
-        if (user.getRole() == 1) myReservationsButton.setVisible(false);
-        myReservationsButton.setOnMouseClicked(event -> utils.changeWindow(myReservationsButton, "My Reservations", "/fxmlFiles/Customer/MyReservations.fxml", new MyOrdersControlller(user)));
+        if (user.getRole() == 1) myOrdersButton.setVisible(false);
+        myOrdersButton.setOnMouseClicked(event -> utils.changeWindow(myOrdersButton, "My Orders", "/fxmlFiles/Customer/MyOrders.fxml", new MyOrdersController(user)));
     }
 }
