@@ -5,7 +5,9 @@ import ba.unsa.etf.rpr.exceptions.GlassesException;
 import java.sql.*;
 import java.util.Map;
 import java.util.TreeMap;
-
+/**
+ * MySQL Implementation of DAO
+ */
 public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao {
     private static UserDaoSQLImpl instance = null;
     private UserDaoSQLImpl() {
