@@ -1,7 +1,7 @@
 package ba.unsa.etf.rpr.business;
+
 import ba.unsa.etf.rpr.dao.DaoFactory;
 import ba.unsa.etf.rpr.domain.User;
-import ba.unsa.etf.rpr.exceptions.GlassesException;
 import ba.unsa.etf.rpr.exceptions.GlassesException;
 
 import java.security.MessageDigest;
