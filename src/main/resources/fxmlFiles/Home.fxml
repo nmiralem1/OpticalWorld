@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="698.0" style="-fx-background-color: aqua;" stylesheets="@../css/projekat.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
+   <Button fx:id="signInButton" layoutX="549.0" layoutY="413.0" mnemonicParsing="false" onAction="#handleLogin" text="LOG IN" textFill="WHITE">
+      <font>
+         <Font name="Calibri Light Italic" size="12.0" />
+      </font>
+   </Button>
+   <Button fx:id="signUpButton" layoutX="54.0" layoutY="441.0" mnemonicParsing="false" onAction="#signUpOnAction" text="SIGN UP" textFill="WHITE" />
+   <Button fx:id="aboutUsButton" layoutX="54.0" layoutY="202.0" mnemonicParsing="false" onAction="#aboutUsOnAction" prefHeight="31.0" prefWidth="95.0" text="About Us" textAlignment="CENTER" textFill="WHITE">
+      <font>
+         <Font name="JetBrains Mono Bold" size="12.0" />
+      </font>
+   </Button>
+   <Button fx:id="helpButton" layoutX="54.0" layoutY="245.0" mnemonicParsing="false" onAction="#helpOnAction" prefHeight="31.0" prefWidth="69.0" text="Help" textAlignment="CENTER" textFill="WHITE">
+      <font>
+         <Font name="JetBrains Mono Bold" size="12.0" />
+      </font>
+   </Button>
+   <Text fill="#4489f0" layoutX="214.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to the Optical World!">
+      <font>
+         <Font name="Montserrat Black" size="26.0" />
+      </font>
+   </Text>
+   <Text fill="#4489f0" layoutX="282.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="We're your one-stop destination for all your eyewear needs. Whether you need a new pair of stylish glasses, prescription sunglasses, or contact lenses, we've got you covered." textAlignment="RIGHT" wrappingWidth="371.9564514160156">
+      <font>
+         <Font name="Montserrat ExtraBold" size="14.0" />
+      </font>
+   </Text>
+   <ImageView fitHeight="196.0" fitWidth="193.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../images/logo-opticalWorld.png" />
+   </ImageView>
+   <TextField fx:id="usernameField" layoutX="369.0" layoutY="249.0" prefHeight="27.0" prefWidth="250.0" promptText="username" />
+   <PasswordField fx:id="passwordField" layoutX="369.0" layoutY="306.0" prefHeight="27.0" prefWidth="250.0" promptText="password" styleClass="passwordField" />
+   <Text fill="#4489f0" layoutX="144.0" layoutY="462.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account?" wrappingWidth="207.28976440429688">
+      <font>
+         <Font name="Montserrat Black" size="14.0" />
+      </font>
+   </Text>
+   <Label fx:id="badUsername"  textFill="RED" layoutX="370.0" layoutY="282.0" text=" " />
+   <Label fx:id="badPassword"  textFill="RED" layoutX="370.0" layoutY="344.0" text=" " />
+   <Label fx:id="errorLabel"  textFill="RED" layoutX="390.0" layoutY="418.0" text=" " />
+</Pane>
