@@ -6,7 +6,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <VBox alignment="CENTER" layoutX="9.0" prefHeight="200.0" prefWidth="300.0" spacing="10.0" stylesheets="@../../../css/projekat.css">
+        <VBox alignment="CENTER" layoutX="9.0" prefHeight="200.0" prefWidth="300.0" spacing="10.0" stylesheets="@../../../css/styles.css">
             <Label text="Delete Order Confirmation">
                 <font>
                     <Font name="Montserrat Black" size="14.0" />
