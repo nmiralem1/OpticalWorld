@@ -8,7 +8,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-
+/**
+ * Controller that will delete glasses from database.
+ */
 public class DeleteGlassesController {
 
     @FXML private Label confirmationLabel;
@@ -29,31 +31,30 @@ public class DeleteGlassesController {
     @FXML
     private void initialize() {
         if (glassesToDelete == null) {
-            // Prikazati upozorenje korisniku da nijedna soba nije izabrana
             showAlert("Please select glasses to delete.");
             utils.closeCurrentStage(confirmationLabel);
             return;
         }
 
-        String confirmationMessage = "Are you sure you want to delete Room #" + glassesToDelete.getId() + "?";
+        String confirmationMessage = "Are you sure you want to delete glasses with id #" + glassesToDelete.getId() + "?";
         confirmationLabel.setText(confirmationMessage);
 
-        confirmButton.setOnAction(event -> deleteRoom());
+        confirmButton.setOnAction(event -> deleteGlasses());
         cancelButton.setOnAction(event -> utils.closeCurrentStage(confirmationLabel));
     }
 
     @FXML
-    private void deleteRoom() {
+    private void deleteGlasses() {
         try {
-            // Obriši sobu iz baze podataka
+            // Delete glasses from database
             gm.delete(glassesToDelete.getId());
 
-            // Ažuriraj tabelu u AdminAccountController-u
+            // Update table ind AdminPanelController
             adminAccountController.refreshTables();
 
             utils.closeCurrentStage(confirmationLabel);
         } catch (GlassesException e) {
-            showAlert("An error occurred while deleting the room.");
+            showAlert("An error occurred while deleting glasses.");
         }
     }
 
