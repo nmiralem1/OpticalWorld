@@ -24,9 +24,9 @@ import java.util.Objects;
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 /**
- * JavaFX controller za kreiranje i izmjenu prozora koji se otvori kada se aplikacija pokrene
+ * JavaFX controller for creating and updating screens
  *
- * @author Nadina
+ * @author nmiralem1
  */
 public class HomeController {
 
