@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0"
+      prefWidth="698.0" style="-fx-background-color: aqua;" stylesheets="@../css/styles.css"
+      xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <Button fx:id="signUpButton" onAction="#signUpOnAction" layoutX="54.0" layoutY="441.0" mnemonicParsing="false" text="SIGN UP" textFill="WHITE"/>
+   <Button fx:id="aboutUsButton" layoutX="54.0" layoutY="202.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="95.0"
+           style="-fx-background-color: #2D5BA0;" text="About Us" textAlignment="CENTER" textFill="WHITE">
+      <font>
+         <Font name="JetBrains Mono Bold" size="12.0"/>
+      </font>
+   </Button>
+   <Button fx:id="helpButton" onAction="#helpOnAction" layoutX="54.0" layoutY="245.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="69.0" text="Help"
+           textAlignment="CENTER" textFill="WHITE">
+      <font>
+         <Font name="JetBrains Mono Bold" size="12.0"/>
+      </font>
+   </Button>
+   <Text fill="#4489f0" layoutX="213.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="About Us"
+         textAlignment="CENTER" wrappingWidth="406.55799865722656">
+      <font>
+         <Font name="Montserrat Black" size="26.0"/>
+      </font>
+   </Text>
+   <Text fill="#4489f0" layoutX="248.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text="Welcome to Optical World – Your Vision, Our Commitment!At Optical World, we are dedicated to enhancing your visual experience by offering a wide range of eyewear solutions that combine style, quality, and affordability. We understand that your eyesight is precious, and we are here to provide you with the best optical products and services to ensure you see the world clearly."
+         textAlignment="JUSTIFY" wrappingWidth="371.9564514160156">
+      <font>
+         <Font name="Montserrat ExtraBold" size="14.0"/>
+      </font>
+   </Text>
+   <ImageView fitHeight="196.0" fitWidth="193.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../images/logo-opticalWorld.png"/>
+   </ImageView>
+   <Text fill="#1b57a6" layoutX="248.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text="Have questions or need assistance? Contact us!" textAlignment="JUSTIFY"
+         wrappingWidth="371.9564514160156">
+      <font>
+         <Font name="Montserrat Black" size="14.0"/>
+      </font>
+   </Text>
+   <Text fill="#113b77" layoutX="253.0" layoutY="356.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text="Address: 997 Atha Drive, Bakersfield, California" wrappingWidth="361.9564514160156">
+      <font>
+         <Font name="Montserrat ExtraBold" size="14.0"/>
+      </font>
+   </Text>
+   <Text fill="#113b77" layoutX="253.0" layoutY="383.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text="Phone: 661-637-4209" wrappingWidth="361.9564514160156">
+      <font>
+         <Font name="Montserrat ExtraBold" size="14.0"/>
+      </font>
+   </Text>
+   <Text fill="#113b77" layoutX="253.0" layoutY="409.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text="Email: opticalworld.info@gmail.com" wrappingWidth="361.9564514160156">
+      <font>
+         <Font name="Montserrat ExtraBold" size="14.0"/>
+      </font>
+   </Text>
+   <Text fill="#113b77" layoutX="253.0" layoutY="437.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text="Website: https://opticalworld.com" wrappingWidth="361.9564514160156">
+      <font>
+         <Font name="Montserrat ExtraBold" size="14.0"/>
+      </font>
+   </Text>
+   <ImageView fx:id="goBack" fitHeight="51.0" fitWidth="47.0" layoutX="248.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+      <effect>
+         <ColorAdjust brightness="1.0" contrast="-0.69" hue="-0.1" saturation="-0.16"/>
+      </effect>
+      <Image url="@../images/goBack.png"/>
+   </ImageView>
+</Pane>
