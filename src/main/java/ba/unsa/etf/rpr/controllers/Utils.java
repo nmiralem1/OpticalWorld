@@ -10,7 +10,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
-
+/**
+ * Utils.
+ */
 public class Utils {
     public void changeWindow(Node n, String title, String file, Object controller) {
         closeCurrentStage(n); // Close the current stage (if any)
