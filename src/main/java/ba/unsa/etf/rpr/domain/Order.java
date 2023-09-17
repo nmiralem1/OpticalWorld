@@ -8,11 +8,19 @@ import java.util.Objects;
  */
 
 public class Order implements Idable {
+
     private Glasses glassesID;
     private User userID;
-    private int total;
+    private int total,id;
 
     public Order() {
+    }
+
+    public Order(Glasses glassesID, User userID, int total,int id) {
+        this.glassesID = glassesID;
+        this.userID = userID;
+        this.total = total;
+        this.id=id;
     }
 
     public Order(Glasses glassesID, User userID, int total) {
@@ -26,12 +34,7 @@ public class Order implements Idable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return total == order.total && Objects.equals(glassesID, order.glassesID) && Objects.equals(userID, order.userID);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(glassesID, userID, total);
+        return total == order.total && id == order.id && glassesID.equals(order.glassesID) && userID.equals(order.userID);
     }
 
     @Override
@@ -40,7 +43,13 @@ public class Order implements Idable {
                 "glassesID=" + glassesID +
                 ", userID=" + userID +
                 ", total=" + total +
+                ", id=" + id +
                 '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(glassesID, userID, total, id);
     }
 
     public Glasses getGlassesID() {
@@ -69,11 +78,11 @@ public class Order implements Idable {
 
     @Override
     public void setId(int id) {
-
+        this.id = id;
     }
 
     @Override
     public int getId() {
-        return 0;
+        return id;
     }
 }
