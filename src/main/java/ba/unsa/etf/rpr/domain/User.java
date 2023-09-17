@@ -19,6 +19,14 @@ public class User implements Idable {
         this.role = role;
     }
 
+    public User(int role, String firstName, String lastName, String email, String username) {
+        this.role = role;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.username = username;
+    }
+
     public User() {
     }
 
