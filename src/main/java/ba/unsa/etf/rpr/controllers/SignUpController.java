@@ -28,7 +28,7 @@ public class SignUpController extends Component {
 
     public PasswordField password;
     private User user = new User();
-    private final Utils utils = new Utils();
+    private final Utilities utilities = new Utilities();
     private final UserManager userManager = new UserManager();
     @FXML
     public void initialize(){
@@ -39,9 +39,9 @@ public class SignUpController extends Component {
         password.textProperty().addListener((observable, oldValue, newValue) -> badPassword.setText(""));
         email.textProperty().addListener((observable, oldValue, newValue) -> badEmail.setText(""));
 
-        goBack.setOnMouseClicked(event -> utils.changeWindow(goBack, "Home Page", "/fxmlFiles/Home.fxml", new HomeController()));
-        aboutUsButton.setOnMouseClicked(event -> utils.changeWindow(aboutUsButton, "About Us", "/fxmlFiles/AboutUs.fxml", new AboutUsController()));
-        helpButton.setOnMouseClicked(event -> utils.changeWindow(helpButton, "Help", "/fxmlFiles/Help.fxml", new HelpController()));
+        goBack.setOnMouseClicked(event -> utilities.changeWindow(goBack, "Home Page", "/fxmlFiles/Home.fxml", new HomeController()));
+        aboutUsButton.setOnMouseClicked(event -> utilities.changeWindow(aboutUsButton, "About Us", "/fxmlFiles/AboutUs.fxml", new AboutUsController()));
+        helpButton.setOnMouseClicked(event -> utilities.changeWindow(helpButton, "Help", "/fxmlFiles/Help.fxml", new HelpController()));
 
     }
 
@@ -105,7 +105,7 @@ public class SignUpController extends Component {
             try {
                 // Add the new user to the database
                 user = UserManager.add(user);
-                utils.changeWindow(signUpButton, "Sign In", "/fxmlFiles/Home.fxml", new HomeController());
+                utilities.changeWindow(signUpButton, "Sign In", "/fxmlFiles/Home.fxml", new HomeController());
             } catch (Exception e) {
                 new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
             }

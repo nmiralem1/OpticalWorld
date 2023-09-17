@@ -15,7 +15,7 @@ public class UpdateGlassesController {
 
     @FXML private TextField nameField, priceField, categoryField, imageField;
     @FXML private Button saveButton, cancelButton;
-    private final Utils utils = new Utils();
+    private final Utilities utilities = new Utilities();
     private final GlassesManager gm = new GlassesManager();
     private final Glasses glassesToUpdate;
     private AdminPanelController adminPanelController;
@@ -31,7 +31,7 @@ public class UpdateGlassesController {
     private void initialize() {
         if (glassesToUpdate == null) {
             showAlert("Please select glasses to update.");
-            utils.closeCurrentStage(saveButton);
+            utilities.closeWindow(saveButton);
             return;
         }
 
@@ -41,7 +41,7 @@ public class UpdateGlassesController {
         imageField.setText(glassesToUpdate.getImage());
 
         saveButton.setOnAction(event -> updateGlasses());
-        cancelButton.setOnAction(event -> utils.closeCurrentStage(cancelButton));
+        cancelButton.setOnAction(event -> utilities.closeWindow(cancelButton));
     }
 
 
@@ -73,7 +73,7 @@ public class UpdateGlassesController {
 
             adminPanelController.refreshTables();
 
-            utils.closeCurrentStage(saveButton);
+            utilities.closeWindow(saveButton);
         } catch (NumberFormatException | GlassesException e) {
             showAlert("Invalid input. Please enter valid numeric values.");
         }

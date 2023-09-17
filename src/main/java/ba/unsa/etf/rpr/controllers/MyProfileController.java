@@ -17,7 +17,7 @@ public class MyProfileController {
 
     public MyProfileController(User u) { this.user = u; }
 
-    private final Utils utils= new Utils();
+    private final Utilities utilities = new Utilities();
     public void initialize() {
 
         firstNameLabel.setText(user.getFirstName());
@@ -28,10 +28,10 @@ public class MyProfileController {
 
         String fxmlTitle = (user.getRole() == 1) ? "Admin Panel" : "Home Page";
         String fxmlPath = (user.getRole() == 1) ? "/fxmlFiles/Admin/AdminPanel.fxml" : "/fxmlFiles/Customer/UserPanel.fxml";
-        goBack.setOnMouseClicked(event -> utils.changeWindow(goBack, fxmlTitle, fxmlPath, (user.getRole() == 1) ? new AdminPanelController(user) : new UserPanelController(user)));
-        logOutButton.setOnMouseClicked(event -> utils.changeWindow(logOutButton, "Main Page", "/fxmlFiles/Home.fxml", new HomeController()));
+        goBack.setOnMouseClicked(event -> utilities.changeWindow(goBack, fxmlTitle, fxmlPath, (user.getRole() == 1) ? new AdminPanelController(user) : new UserPanelController(user)));
+        logOutButton.setOnMouseClicked(event -> utilities.changeWindow(logOutButton, "Main Page", "/fxmlFiles/Home.fxml", new HomeController()));
 
         if (user.getRole() == 1) myOrdersButton.setVisible(false);
-        myOrdersButton.setOnMouseClicked(event -> utils.changeWindow(myOrdersButton, "My Orders", "/fxmlFiles/Customer/MyOrders.fxml", new MyOrdersController(user)));
+        myOrdersButton.setOnMouseClicked(event -> utilities.changeWindow(myOrdersButton, "My Orders", "/fxmlFiles/Customer/MyOrders.fxml", new MyOrdersController(user)));
     }
 }

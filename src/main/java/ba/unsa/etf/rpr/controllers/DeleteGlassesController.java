@@ -16,7 +16,7 @@ public class DeleteGlassesController {
     @FXML private Label confirmationLabel;
     @FXML private Button confirmButton, cancelButton;
 
-    private final Utils utils = new Utils();
+    private final Utilities utilities = new Utilities();
     private final GlassesManager gm = new GlassesManager();
     private final Glasses glassesToDelete;
     private User user = new User();
@@ -32,7 +32,7 @@ public class DeleteGlassesController {
     private void initialize() {
         if (glassesToDelete == null) {
             showAlert("Please select glasses to delete.");
-            utils.closeCurrentStage(confirmationLabel);
+            utilities.closeWindow(confirmationLabel);
             return;
         }
 
@@ -40,7 +40,7 @@ public class DeleteGlassesController {
         confirmationLabel.setText(confirmationMessage);
 
         confirmButton.setOnAction(event -> deleteGlasses());
-        cancelButton.setOnAction(event -> utils.closeCurrentStage(confirmationLabel));
+        cancelButton.setOnAction(event -> utilities.closeWindow(confirmationLabel));
     }
 
     @FXML
@@ -52,7 +52,7 @@ public class DeleteGlassesController {
             // Update table ind AdminPanelController
             adminAccountController.refreshTables();
 
-            utils.closeCurrentStage(confirmationLabel);
+            utilities.closeWindow(confirmationLabel);
         } catch (GlassesException e) {
             showAlert("An error occurred while deleting glasses.");
         }

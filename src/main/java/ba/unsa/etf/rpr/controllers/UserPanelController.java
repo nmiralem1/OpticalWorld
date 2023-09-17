@@ -44,7 +44,7 @@ public class UserPanelController {
     private double totalAmount = 0.0;
 
     private User user = new User();
-    private Utils utils = new Utils();
+    private Utilities utilities = new Utilities();
 
     public UserPanelController(User user) {
         this.user = user;
@@ -59,9 +59,9 @@ public class UserPanelController {
     // Ova metoda će se pozvati kada se kontroler inicijalizuje
     public void initialize() {
 
-        myProfileButton.setOnMouseClicked(event -> utils.changeWindow(myProfileButton, "My Profile", "/fxmlFiles/MyProfile.fxml", new MyProfileController(user)));
-        logOutButton.setOnMouseClicked(event -> utils.changeWindow(logOutButton, "Main Page", "/fxmlFiles/Home.fxml", new HomeController()));
-        myOrdersButton.setOnMouseClicked(event -> utils.changeWindow(myOrdersButton, "My Orders", "/fxmlFiles/Customer/MyOrders.fxml", new MyOrdersController(user)));
+        myProfileButton.setOnMouseClicked(event -> utilities.changeWindow(myProfileButton, "My Profile", "/fxmlFiles/MyProfile.fxml", new MyProfileController(user)));
+        logOutButton.setOnMouseClicked(event -> utilities.changeWindow(logOutButton, "Main Page", "/fxmlFiles/Home.fxml", new HomeController()));
+        myOrdersButton.setOnMouseClicked(event -> utilities.changeWindow(myOrdersButton, "My Orders", "/fxmlFiles/Customer/MyOrders.fxml", new MyOrdersController(user)));
 
         nameLabel.setText(user.getFirstName());
         loadGlasses("Dioptric", tab3, scroll3);

@@ -11,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
 
 import java.sql.SQLException;
 /**
@@ -30,7 +29,7 @@ public class MyOrdersController {
 
     private final OrderManager o = new OrderManager();
     private final GlassesManager gm = new GlassesManager();
-    private final Utils utils = new Utils();
+    private final Utilities utilities = new Utilities();
     @FXML private Label nameLabel;
 
     void refreshTable(){
@@ -45,8 +44,8 @@ public class MyOrdersController {
     public void initialize() throws SQLException {
         nameLabel.setText(user.getFirstName());
 
-        homeButton.setOnMouseClicked(event -> utils.changeWindow(homeButton, "Home Page", "/fxmlFiles/Customer/UserPanel.fxml", new UserPanelController(user)));
-        myProfileButton.setOnMouseClicked(event -> utils.changeWindow(myProfileButton, "My Profile", "/fxmlFiles/MyProfile.fxml", new MyProfileController(user)));
+        homeButton.setOnMouseClicked(event -> utilities.changeWindow(homeButton, "Home Page", "/fxmlFiles/Customer/UserPanel.fxml", new UserPanelController(user)));
+        myProfileButton.setOnMouseClicked(event -> utilities.changeWindow(myProfileButton, "My Profile", "/fxmlFiles/MyProfile.fxml", new MyProfileController(user)));
 
         glassesIdColumn.setCellValueFactory(new PropertyValueFactory<>("glassesID"));
         orderIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));

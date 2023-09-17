@@ -12,7 +12,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 
-import java.time.format.DateTimeParseException;
 import java.util.List;
 /**
  * Controller that will update specific order from database.
@@ -20,7 +19,7 @@ import java.util.List;
 public class UpdateOrderController {
     @FXML private Button saveButton;
 
-    private final Utils utils = new Utils();
+    private final Utilities utilities = new Utilities();
     private final User user;
     private final OrderManager o = new OrderManager();
 
@@ -38,7 +37,7 @@ public class UpdateOrderController {
     private void initialize() throws GlassesException {
         if (selectedOrder == null) {
             showAlert("Please select glasses to update.");
-            utils.closeCurrentStage(saveButton);
+            utilities.closeWindow(saveButton);
             return;
         }
 
@@ -81,7 +80,7 @@ public class UpdateOrderController {
             adminAccountController.refreshTables();
 
             // Close the dialog or perform other actions as needed
-            utils.closeCurrentStage(saveButton);
+            utilities.closeWindow(saveButton);
         }  catch (NumberFormatException | GlassesException e) {
             showAlert("Invalid input. Please enter valid numeric values.");
         }

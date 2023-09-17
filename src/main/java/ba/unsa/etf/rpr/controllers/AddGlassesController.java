@@ -16,7 +16,7 @@ public class AddGlassesController {
 
     @FXML private TextField nameField, priceField, categoryField, imageField;
     @FXML private Button saveButton;
-    private final Utils utils = new Utils();
+    private final Utilities utilities = new Utilities();
     private final GlassesManager gm = new GlassesManager();
     private AdminPanelController adminPanelController;
     private User user = new User();
@@ -68,7 +68,7 @@ public class AddGlassesController {
             // Updating table in AdminPanelController
             adminPanelController.refreshTables();
 
-            utils.closeCurrentStage(saveButton);
+            utilities.closeWindow(saveButton);
         } catch (NumberFormatException | GlassesException e) {
             showAlert("Invalid input. Please enter valid numeric values.");
         }

@@ -15,7 +15,7 @@ public class AboutUsController {
     @FXML
     private Button signUpButton, helpButton;
     @FXML private ImageView goBack;
-    private final Utils utils = new Utils();
+    private final Utilities utilities = new Utilities();
     private User user = new User();
 
     public AboutUsController(User user) {
@@ -26,18 +26,18 @@ public class AboutUsController {
     }
 
     public void signUpOnAction(ActionEvent actionEvent) throws IOException {
-        utils.changeWindow(signUpButton, "Sign Up", "/fxmlFiles/SignUp.fxml", new SignUpController());
+        utilities.changeWindow(signUpButton, "Sign Up", "/fxmlFiles/SignUp.fxml", new SignUpController());
     }
 
     public void helpOnAction(ActionEvent actionEvent) throws IOException {
-        utils.changeWindow(helpButton, "Help", "/fxmlFiles/Help.fxml", new HelpController());
+        utilities.changeWindow(helpButton, "Help", "/fxmlFiles/Help.fxml", new HelpController());
     }
     /**
      * Initialize method with no parameters.
      */
     @FXML
     public void initialize() {
-        goBack.setOnMouseClicked(event -> utils.changeWindow(goBack, "Home Page", "/fxmlFiles/Home.fxml", new HomeController()));
+        goBack.setOnMouseClicked(event -> utilities.changeWindow(goBack, "Home Page", "/fxmlFiles/Home.fxml", new HomeController()));
 
     }
 

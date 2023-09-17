@@ -13,19 +13,19 @@ public class HelpController {
 
     @FXML private Button aboutUsButton, signInButton, signUpButton, helpButton;
     @FXML private ImageView goBack;
-    private final Utils utils = new Utils();
+    private final Utilities utilities = new Utilities();
 
     public void signUpOnAction(ActionEvent actionEvent) throws IOException {
-        utils.changeWindow(signUpButton, "Sign Up", "/fxmlFiles/SignUp.fxml", new SignUpController());
+        utilities.changeWindow(signUpButton, "Sign Up", "/fxmlFiles/SignUp.fxml", new SignUpController());
     }
 
     public void aboutUsOnAction(ActionEvent actionEvent) throws IOException {
-        utils.changeWindow(aboutUsButton, "About Us", "/fxmlFiles/AboutUs.fxml", new AboutUsController());
+        utilities.changeWindow(aboutUsButton, "About Us", "/fxmlFiles/AboutUs.fxml", new AboutUsController());
     }
 
     @FXML
     public void initialize() {
-        goBack.setOnMouseClicked(event -> utils.changeWindow(goBack, "Home Page", "/fxmlFiles/Home.fxml", new HomeController()));
+        goBack.setOnMouseClicked(event -> utilities.changeWindow(goBack, "Home Page", "/fxmlFiles/Home.fxml", new HomeController()));
 
     }
 }

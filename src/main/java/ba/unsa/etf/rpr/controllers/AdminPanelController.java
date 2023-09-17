@@ -43,15 +43,15 @@ public class AdminPanelController {
     private final OrderManager o = new OrderManager();
     private final GlassesManager gm = new GlassesManager();
     private final UserManager um = new UserManager();
-    private final Utils utils = new Utils();
+    private final Utilities utilities = new Utilities();
     /**
      * Initialize method with no parameters.
      */
     public void initialize() throws SQLException {
 
-        myProfileButton.setOnMouseClicked(event -> utils.changeWindow(myProfileButton, "My Profile", "/fxmlFiles/MyProfile.fxml", new MyProfileController(user)));
-        logOutButton.setOnMouseClicked(event -> utils.changeWindow(logOutButton, "Main Page", "/fxmlFiles/Home.fxml", new HomeController()));
-        aboutUsButton.setOnMouseClicked(event -> utils.changeWindow(aboutUsButton, "About Us", "/fxmlFiles/AboutUs.fxml", new AboutUsController(user)));
+        myProfileButton.setOnMouseClicked(event -> utilities.changeWindow(myProfileButton, "My Profile", "/fxmlFiles/MyProfile.fxml", new MyProfileController(user)));
+        logOutButton.setOnMouseClicked(event -> utilities.changeWindow(logOutButton, "Main Page", "/fxmlFiles/Home.fxml", new HomeController()));
+        aboutUsButton.setOnMouseClicked(event -> utilities.changeWindow(aboutUsButton, "About Us", "/fxmlFiles/AboutUs.fxml", new AboutUsController(user)));
 
 
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -78,7 +78,7 @@ public class AdminPanelController {
                 // Show alert that no glasses were selected
                 showAlert("Please select glasses to update.");
             } else {
-                utils.openDialog("Update Glasses", "/fxmlFiles/Admin/Glasses/updateGlassesDialog.fxml", new UpdateGlassesController(this, user, selectedGlasses));
+                utilities.openWindow("Update Glasses", "/fxmlFiles/Admin/Glasses/updateGlassesDialog.fxml", new UpdateGlassesController(this, user, selectedGlasses));
             }
         });
 
@@ -88,7 +88,7 @@ public class AdminPanelController {
                 // Show alert that no glasses were selected
                 showAlert("Please select glasses to update.");
             } else {
-                utils.openDialog("Delete Glasses", "/fxmlFiles/Admin/Glasses/DeleteGlassesDialog.fxml", new DeleteGlassesController(this, user, selectedGlasses));
+                utilities.openWindow("Delete Glasses", "/fxmlFiles/Admin/Glasses/DeleteGlassesDialog.fxml", new DeleteGlassesController(this, user, selectedGlasses));
             }
         });
 
@@ -99,7 +99,7 @@ public class AdminPanelController {
                 // Show alert that no order was selected
                 showAlert("Please select an order to update.");
             } else {
-                utils.openDialog("Update Order", "/fxmlFiles/Admin/Order/UpdateOrderDialog.fxml", new UpdateOrderController(this, user, selectedOrder));
+                utilities.openWindow("Update Order", "/fxmlFiles/Admin/Order/UpdateOrderDialog.fxml", new UpdateOrderController(this, user, selectedOrder));
             }
         });
 
@@ -109,12 +109,12 @@ public class AdminPanelController {
             if (selectedOrder == null) {
                 showAlert("Please select an order to delete.");
             } else {
-                utils.openDialog("Delete Order", "/fxmlFiles/Admin/Order/DeleteOrderDialog.fxml", new DeleteOrderController(this, user, selectedOrder));
+                utilities.openWindow("Delete Order", "/fxmlFiles/Admin/Order/DeleteOrderDialog.fxml", new DeleteOrderController(this, user, selectedOrder));
             }
         });
 
-        addGlassesButton.setOnMouseClicked(event -> utils.openDialog("Add Glasses", "/fxmlFiles/Admin/Glasses/AddGlassesDialog.fxml", new AddGlassesController(this, user)));
-        addOrderButton.setOnMouseClicked(event -> utils.openDialog("Add Order", "/fxmlFiles/Admin/Order/AddOrderDialog.fxml", new AddOrderController(this, user)));
+        addGlassesButton.setOnMouseClicked(event -> utilities.openWindow("Add Glasses", "/fxmlFiles/Admin/Glasses/AddGlassesDialog.fxml", new AddGlassesController(this, user)));
+        addOrderButton.setOnMouseClicked(event -> utilities.openWindow("Add Order", "/fxmlFiles/Admin/Order/AddOrderDialog.fxml", new AddOrderController(this, user)));
 
     }
 

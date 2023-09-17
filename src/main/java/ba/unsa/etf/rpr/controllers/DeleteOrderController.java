@@ -14,7 +14,7 @@ public class DeleteOrderController {
 
     @FXML private Label confirmationLabel;
     @FXML private Button confirmButton, cancelButton;
-    private final Utils utils = new Utils();
+    private final Utilities utilities = new Utilities();
     private final OrderManager r = new OrderManager();
     private final Order orderToDelete;
     private AdminPanelController adminAccountController;
@@ -31,7 +31,7 @@ public class DeleteOrderController {
         if (orderToDelete == null) {
             // Display a warning to the user that no order is selected
             showAlert("Please select an order to delete.");
-            utils.closeCurrentStage(confirmationLabel);
+            utilities.closeWindow(confirmationLabel);
             return;
         }
 
@@ -39,7 +39,7 @@ public class DeleteOrderController {
         confirmationLabel.setText(confirmationMessage);
 
         confirmButton.setOnAction(event -> deleteOrder());
-        cancelButton.setOnAction(event -> utils.closeCurrentStage(cancelButton));
+        cancelButton.setOnAction(event -> utilities.closeWindow(cancelButton));
     }
 
     @FXML
@@ -51,7 +51,7 @@ public class DeleteOrderController {
             // Update the table in AdminPanelController
             adminAccountController.refreshTables();
 
-            utils.closeCurrentStage(confirmButton);
+            utilities.closeWindow(confirmButton);
         } catch (Exception e) {
             showAlert("An error occurred while deleting the order.");
         }
