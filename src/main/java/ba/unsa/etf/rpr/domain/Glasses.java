@@ -11,6 +11,17 @@ public class Glasses implements Idable {
     private String name, category, image;
     private double price;
 
+    public Glasses() {
+    }
+
+    public Glasses(int id, String name, String category, String image, double price) {
+        this.id = id;
+        this.name = name;
+        this.category = category;
+        this.image = image;
+        this.price = price;
+    }
+
     public String getName() {
         return name;
     }
