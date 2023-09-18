@@ -41,27 +41,7 @@ public class UserManager {
     public User findUsername(String usernameField) throws GlassesException {
         return DaoFactory.userDao().findUsername(usernameField);
     }
-    private static final String HASHING_ALGORITHM = "SHA-256";
 
-    /**
-     * Hash password string.
-     *
-     * @param password the password
-     * @return the string
-     * @throws NoSuchAlgorithmException the no such algorithm exception
-     */
-    public static String hashPassword(String password) throws NoSuchAlgorithmException {
-        MessageDigest messageDigest = MessageDigest.getInstance(HASHING_ALGORITHM);
-        messageDigest.update(password.getBytes());
-
-        byte[] hashedPassword = messageDigest.digest();
-
-        StringBuilder stringBuilder = new StringBuilder();
-        for (byte b : hashedPassword) {
-            stringBuilder.append(String.format("%02x", b));
-        }
-        return stringBuilder.toString();
-    }
     public int totalUsers() throws SQLException{
         return DaoFactory.userDao().totalUsers();
     }
