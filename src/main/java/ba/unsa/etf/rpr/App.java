@@ -83,7 +83,13 @@ public class App {
             printFormattedOptions(options);
         }
     }
-
+    private static void printFormattedOptions(Options options) {
+        HelpFormatter helpFormatter = new HelpFormatter();
+        PrintWriter printWriter = new PrintWriter(System.out);
+        helpFormatter.printUsage(printWriter, 150, "java -jar optical-world.jar [option] 'something else if needed'");
+        helpFormatter.printOptions(printWriter, 150, options, 2, 7);
+        printWriter.close();
+    }
 
     private static Options addOptions() {
         Options options = new Options();
