@@ -86,7 +86,7 @@ public class HomeController {
 
         System.out.println(user.toString());
 
-        if (user == null || !(Objects.equals(user.getPassword(), UserManager.hashPassword(password)))) {
+        if (user == null || !(Objects.equals(user.getPassword(), password))) {
             errorLabel.setText("Invalid username or password!");
             return;
         }
