@@ -100,7 +100,7 @@ public class SignUpController extends Component {
             user.setLastName(surnameInput);
             user.setEmail(emailInput);
             user.setUsername(usernameInput);
-            user.setPassword(UserManager.hashPassword(passwordInput));
+            user.setPassword(passwordInput);
 
             try {
                 // Add the new user to the database
