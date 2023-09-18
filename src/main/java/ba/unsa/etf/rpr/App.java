@@ -75,13 +75,21 @@ public class App {
                 }
             } else {
                 System.out.println("Invalid option entered.");
-              //  printFormattedOptions(options);
+                printFormattedOptions(options);
             }
 
         } catch (ParseException e) {
             System.out.println("Error while parsing the command line arguments: " + e.getMessage());
-            //printFormattedOptions(options);
+            printFormattedOptions(options);
         }
     }
 
+
+    private static Options addOptions() {
+        Options options = new Options();
+        options.addOption(getAllGlasses);
+        options.addOption(getAllUsers);
+        options.addOption(getAllOrders);
+        return options;
+    }
 }
