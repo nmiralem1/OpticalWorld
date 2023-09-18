@@ -75,12 +75,12 @@ public class App {
                 }
             } else {
                 System.out.println("Invalid option entered.");
-                printFormattedOptions(options);
+              //  printFormattedOptions(options);
             }
 
         } catch (ParseException e) {
             System.out.println("Error while parsing the command line arguments: " + e.getMessage());
-            printFormattedOptions(options);
+            //printFormattedOptions(options);
         }
     }
 
