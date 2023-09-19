@@ -4,57 +4,100 @@ import ba.unsa.etf.rpr.business.GlassesManager;
 import ba.unsa.etf.rpr.domain.Glasses;
 import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exceptions.GlassesException;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+
+import java.io.File;
+
 /**
- * Controller that will update glasses from database.
+ * Controller that will add new glasses to the database.
  */
 public class UpdateGlassesController {
 
-    @FXML private TextField nameField, priceField, categoryField, imageField;
-    @FXML private Button saveButton, cancelButton;
+
+    @FXML private TextField nameField, priceField, categoryField;
+    @FXML private Button saveButton, imageField;
+    @FXML private ImageView selectedImageView;
+    @FXML private ComboBox<String> categoryComboBox;
+
     private final Utilities utilities = new Utilities();
     private final GlassesManager gm = new GlassesManager();
-    private final Glasses glassesToUpdate;
     private AdminPanelController adminPanelController;
     private User user = new User();
+    private String imagePath;
+    private Glasses selectedGlasses;
 
-    public UpdateGlassesController(AdminPanelController adminAccountController, User user, Glasses glasses) {
-        this.adminPanelController = adminAccountController;
+    public UpdateGlassesController(AdminPanelController adminAccountController, User user, Glasses selectedGlasses) {
         this.user = user;
-        this.glassesToUpdate = glasses;
+        this.adminPanelController = adminAccountController;
+        this.selectedGlasses = selectedGlasses;
     }
+
+    String[] categories = { "Lenses", "Dioptric", "Sunglasses" };
 
     @FXML
     private void initialize() {
-        if (glassesToUpdate == null) {
-            showAlert("Please select glasses to update.");
-            utilities.closeWindow(saveButton);
-            return;
+        categoryComboBox.setItems(FXCollections.observableArrayList(categories));
+
+        if (selectedGlasses != null) {
+            // Popunite polja sa podacima iz selektovanih naočala
+            nameField.setText(selectedGlasses.getName());
+            priceField.setText(String.valueOf(selectedGlasses.getPrice()));
+            categoryComboBox.setValue(selectedGlasses.getCategory());
+
+            // Prikazati sliku selektovanih naočala ako postoji putanja do slike
+            String imagePath = selectedGlasses.getImage();
+            if (imagePath != null && !imagePath.isEmpty()) {
+                File imageFile = new File(imagePath);
+                if (imageFile.exists()) {
+                    Image image = new Image(imageFile.toURI().toString());
+                    selectedImageView.setImage(image);
+                }
+            }
         }
 
-        categoryField.setText(glassesToUpdate.getCategory());
-        priceField.setText(String.valueOf(glassesToUpdate.getPrice()));
-        nameField.setText(glassesToUpdate.getName());
-        imageField.setText(glassesToUpdate.getImage());
-
-        saveButton.setOnAction(event -> updateGlasses());
-        cancelButton.setOnAction(event -> utilities.closeWindow(cancelButton));
+        saveButton.setOnMouseClicked(event -> saveGlasses());
+        imageField.setOnMouseClicked(event -> selectImage());
     }
 
 
+    private void selectImage() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select Image");
+
+        // Postavljen filter za slike ako želimo ograničiti odabir samo na određene vrste slika (npr. JPEG, PNG).
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png"));
+
+        File selectedFile = fileChooser.showOpenDialog(saveButton.getScene().getWindow());
+
+        if (selectedFile != null) {
+            imagePath = selectedFile.getAbsolutePath().replace(File.separator, "/");
+            Image image = new Image(selectedFile.toURI().toString());
+            selectedImageView.setImage(image); // Postavljanje odabrane slike u ImageView
+        }
+    }
+
+    /**
+     * @author nmiralem1
+     * Initialize method with no parameters.
+     */
     @FXML
-    private void updateGlasses() {
+    private void saveGlasses() {
         try {
-            // Validate the input
-            String categoryText = categoryField.getText().trim();
+            // Validacija unosa
+            String categoryText = categoryComboBox.getValue(); // Dobijanje vrednosti iz ComboBox-a
             String nameText = nameField.getText().trim();
             String priceText = priceField.getText().trim();
 
-            if (categoryText.isEmpty() || priceText.isEmpty()) {
-                showAlert("Please fill in all fields.");
+            if (categoryText == null || categoryText.isEmpty() || priceText.isEmpty() || imagePath == null) {
+                showAlert("Please fill in all fields and select an image.");
                 return;
             }
 
@@ -65,12 +108,16 @@ public class UpdateGlassesController {
                 return;
             }
 
-            glassesToUpdate.setCategory(categoryText);
-            glassesToUpdate.setPrice(price);
-            glassesToUpdate.setName(nameText);
+            Glasses glasses = new Glasses();
+            glasses.setCategory(categoryText);
+            glasses.setPrice(price);
+            glasses.setName(nameText);
+            glasses.setImage(imagePath); // Postavljanje putanje slike
 
-            gm.update(glassesToUpdate);
+            // Dodavanje naočala u bazu
+            GlassesManager.update(glasses);
 
+            // Ažuriranje tabele u AdminPanelController
             adminPanelController.refreshTables();
 
             utilities.closeWindow(saveButton);
@@ -80,6 +127,12 @@ public class UpdateGlassesController {
     }
 
 
+
+    /**
+     * @param message
+     * @author nmiralem1
+     * Method that will show alert if some unvalid action is occured
+     */
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
@@ -87,4 +140,6 @@ public class UpdateGlassesController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+
 }
