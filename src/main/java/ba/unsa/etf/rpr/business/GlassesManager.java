@@ -27,7 +27,7 @@ public class GlassesManager {
         return DaoFactory.glassesDao().getById(id);
     }
 
-    public Glasses update(Glasses r) throws GlassesException {
+    public static Glasses update(Glasses r) throws GlassesException {
         return DaoFactory.glassesDao().update(r);
     }
 
