@@ -78,7 +78,7 @@ public class AdminPanelController {
                 // Show alert that no glasses were selected
                 showAlert("Please select glasses to update.");
             } else {
-                utilities.openWindow("Update Glasses", "/fxmlFiles/Admin/Glasses/updateGlassesDialog.fxml", new UpdateGlassesController(this, user, selectedGlasses));
+                utilities.openWindow("Update Glasses", "/fxmlFiles/Admin/Glasses/UpdateGlassesDialog.fxml", new UpdateGlassesController(this, user, selectedGlasses));
             }
         });
 
