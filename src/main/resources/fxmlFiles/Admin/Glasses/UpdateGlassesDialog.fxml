@@ -1,39 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane alignment="center" hgap="10" prefHeight="337.0" prefWidth="387.0" stylesheets="@../../../css/styles.css" vgap="10" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane alignment="center" hgap="10" prefHeight="500.0" prefWidth="387.0" stylesheets="@../../../css/styles.css" vgap="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>
       <ColumnConstraints />
       <ColumnConstraints />
       <ColumnConstraints />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="30.666659037272126" />
+      <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+      <RowConstraints maxHeight="18.0" minHeight="18.0" prefHeight="18.0" />
+      <RowConstraints maxHeight="30.666666666666657" minHeight="0.0" />
+      <RowConstraints maxHeight="50.0" minHeight="0.0" />
       <RowConstraints maxHeight="41.99995930989584" minHeight="0.0" prefHeight="31.33335367838542" />
       <RowConstraints maxHeight="41.99995930989584" minHeight="10.0" prefHeight="31.33335367838542" />
-      <RowConstraints maxHeight="41.99995930989584" minHeight="10.0" prefHeight="31.33335367838542" />
-      <RowConstraints maxHeight="47.33335367838541" minHeight="18.000040690104157" prefHeight="29.999979654947907" />
+      <RowConstraints maxHeight="62.0" minHeight="10.0" prefHeight="32.0" />
+      <RowConstraints maxHeight="47.33335367838541" minHeight="0.0" prefHeight="30.0" />
    </rowConstraints>
    <padding>
       <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
    </padding>
    <children>
-      <Label text="Update Glasses" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-      <Label text="Category" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <Button fx:id="saveButton" text="UPDATE" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="7" />
-      <ComboBox prefHeight="27.0" prefWidth="197.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-      <Label text="Name" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Label prefHeight="20.0" prefWidth="106.0" text="Update Glasses" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+      <Label text="Name" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <ComboBox fx:id="categoryComboBox" prefHeight="27.0" prefWidth="213.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+      <TextField fx:id="nameField" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+      <Label text="Category" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Label text="Price" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <TextField fx:id="priceField" GridPane.columnIndex="2" GridPane.rowIndex="4" />
       <Label text="Image" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-      <Label text="Price" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-      <TextField GridPane.columnIndex="2" GridPane.rowIndex="3" />
-      <TextField GridPane.columnIndex="2" GridPane.rowIndex="6" />
-      <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="198.0" text="Select Image" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+      <Button fx:id="imageField" mnemonicParsing="false" prefHeight="32.0" prefWidth="198.0" text="Select Image" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+      <ImageView fx:id="selectedImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.hgrow="NEVER" GridPane.rowIndex="7" GridPane.vgrow="NEVER" />
+      <Button fx:id="saveButton" text="ADD" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="7" />
    </children>
 </GridPane>
